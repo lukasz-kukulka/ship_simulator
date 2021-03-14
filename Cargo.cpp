@@ -15,5 +15,11 @@ Cargo& Cargo::operator-=(const int delAmount){
         amount_ -= delAmount;
         return *this;
     }
-
+}
+bool Cargo::operator==(const Cargo& cargoCompare) const{
+	if (name_ == cargoCompare.name_){
+		return true;
+	} else {
+		return false;
+	}
 }
