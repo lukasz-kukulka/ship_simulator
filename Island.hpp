@@ -4,7 +4,8 @@
 class Island{
 
 public:
-    Island();
+
+    Island(std::size_t, std::size_t);
     std::pair<size_t, size_t> getCoorditates();
 
 private:

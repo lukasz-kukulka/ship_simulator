@@ -1,5 +1,6 @@
 #include "Ship.hpp"
 
+
 int main (){
     Ship ship1;
     Ship ship2(10, 100, 1000);
