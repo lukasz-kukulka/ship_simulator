@@ -14,5 +14,7 @@ private:
     std::vector<Island>island;
     Island* currentPosition_;
     std::size_t randomPositionX, randomPositionY;
+    void initializeIslands(const std::size_t, bool);
+    bool checkDuplicateCoordination(std::vector<Island>&);
     
 };

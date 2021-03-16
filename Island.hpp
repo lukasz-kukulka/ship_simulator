@@ -6,7 +6,11 @@ class Island{
 public:
 
     Island(std::size_t, std::size_t);
-    std::pair<size_t, size_t> getCoorditates();
+
+    bool operator==(const Island&) const;
+
+    std::pair<size_t, size_t> getCoorditates() const;
+    
 
 private:
     Coordinates position_;

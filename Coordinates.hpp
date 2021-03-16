@@ -10,11 +10,11 @@ public:
 
     bool operator==(const Coordinates&) const;
 
-    std::size_t getPositionX() { return positionX_; }
-    std::size_t getPositionY() { return positionY_; }
+    std::size_t getPositionX() const { return positionX_; }
+    std::size_t getPositionY() const { return positionY_; }
 
 private:
-    std::size_t positionX_, positionY_;
+    std::size_t positionX_{}, positionY_{};
 
 };
 
