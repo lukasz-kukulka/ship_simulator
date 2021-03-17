@@ -6,6 +6,7 @@ class Coordinates
 {
 
 public:
+    Coordinates() = default;
     Coordinates(std::size_t, std::size_t);
 
     bool operator==(const Coordinates&) const;

@@ -1,19 +1,20 @@
 #pragma once
 #include <vector>
+#include "Coordinates.hpp"
 #include "Island.hpp"
-#include <random>
-#include <iostream>
+
 
 class Map{
 
 public:
     Map();
     std::size_t randomGenerate(std::size_t, std::size_t);
+    //Island* getIsland(const Coordinates&);
+    Island* getIsland(const Island::Coordinates&);
 
 private:
-    std::vector<Island>island;
+    std::vector<Island>island_;
     Island* currentPosition_;
-    std::size_t randomPositionX, randomPositionY;
     void initializeIslands(const std::size_t, bool);
     bool checkDuplicateCoordination(std::vector<Island>&);
     

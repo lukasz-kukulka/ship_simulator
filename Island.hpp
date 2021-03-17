@@ -4,13 +4,12 @@
 class Island{
 
 public:
-
+    Island() = default; 
     Island(std::size_t, std::size_t);
 
     bool operator==(const Island&) const;
 
-    std::pair<size_t, size_t> getCoorditates() const;
-    
+    Coordinates getCoorditates() const;
 
 private:
     Coordinates position_;
