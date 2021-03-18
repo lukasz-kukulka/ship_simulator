@@ -4,10 +4,6 @@ Player::Player(){
 
 }
 
-size_t Player::getSpeed() const{
-    
-}
-
-Cargo* Player::getCargo(size_t ) const{
-
+void checkAvailableSpace(){
+    availableSpace_ = 0;
 }
