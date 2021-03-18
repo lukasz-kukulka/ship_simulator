@@ -40,6 +40,11 @@ bool Map::checkDuplicateCoordination(std::vector<Island>& island){
     }
 }
 
+Island* Map::getIsland(const Coordinates& coordinate){
+    auto iterator_island = std::find_if(island_.begin(), island_.end(), [&](Island elements){return elements.getCoorditates() == coordinate; });
+    return &*iterator_island;
+}
+
 
 
 

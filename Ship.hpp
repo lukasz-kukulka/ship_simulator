@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include "Cargo.hpp"
 
 class Ship
 {
@@ -16,9 +17,11 @@ public:
     std::size_t getSpeed() const { return speed_; }
     std::size_t getMaxCrew() const { return maxCrew_; }
     std::size_t getCapacity() const { return capacity_; }
+    Cargo getCargo() const { return cargo_; }
     void setName(const std::string& name) { name_ = name; }
 
 private:
+    Cargo cargo_;
     const int id_ {-1};
     std::string name_;
     std::size_t speed_;

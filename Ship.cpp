@@ -1,5 +1,4 @@
 #include "Ship.hpp"
-#include "Cargo.hpp"
 #include <iostream>
 
 //Ship::Ship(){}
