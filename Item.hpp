@@ -5,6 +5,10 @@
 class Item : public Cargo {
 
 public:
+    enum class Rarity { common = 1, 
+                        rare = 2, 
+                        epic = 4,
+                        legendary = 8 };
 
     std::size_t getPrice() const override;
     std::string getName() const override { return name_; }
@@ -12,6 +16,6 @@ public:
     std::size_t getBestPrice() const override{ return bestPrice_; }
 
 private:
-enum rarity_ { common, rare, epic, legendary } itemRarity;
+    Rarity rarity_
 
 };
