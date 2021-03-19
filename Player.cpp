@@ -1,9 +1,9 @@
 #include "Player.hpp"
 
-Player::Player(){
+Player::Player() {
 
 }
 
-void checkAvailableSpace(){
-    availableSpace_ = 0;
+void Player::checkAvailableSpace(){
+    availableSpace_ = ship_->getCapacity() - ship_->getCargo().getAmount();
 }

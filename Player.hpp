@@ -16,10 +16,10 @@ Cargo* getCargo(size_t index) const { return &startPlayerShip_.getCargo(); }
 
 private:
 
-Ship startPlayerShip_;
-std::shared_ptr<Ship> ship_;
-size_t money_;
-size_t availableSpace_;
+Ship startPlayerShip_ = { };
+std::shared_ptr<Ship> ship_ = nullptr;
+size_t money_ = { };
+size_t availableSpace_ = { 1 };
 
 void checkAvailableSpace();
 
