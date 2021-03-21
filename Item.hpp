@@ -5,6 +5,7 @@
 class Item : public Cargo {
 
 public:
+
     enum class Rarity { common = 1, 
                         rare = 2, 
                         epic = 4,
@@ -16,6 +17,6 @@ public:
     std::size_t getBestPrice() const override{ return bestPrice_; }
 
 private:
-    Rarity rarity_
+    Rarity const rarity_;
 
 };

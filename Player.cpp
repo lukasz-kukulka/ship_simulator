@@ -1,9 +1,12 @@
 #include "Player.hpp"
 
-Player::Player() {
 
-}
+// Cargo Player::getCargo() { 
+//     Cargo cargo;
+//     return cargo;
+// }
 
 void Player::checkAvailableSpace(){
-    availableSpace_ = ship_->getCapacity() - ship_->getCargo().getAmount();
+    //size_t test = Player::getCargo().getAmount();
+    //availableSpace_ = ship_.getCapacity() - getCargo()->getAmount();
 }

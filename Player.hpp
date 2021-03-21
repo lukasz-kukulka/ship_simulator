@@ -1,25 +1,23 @@
 #pragma once
 #include "Cargo.hpp"
 #include "Ship.hpp"
-#include <memory>
+//#include <memory>
 
 class Player{
 
 public:
 
-Player();
+Player() = default;
 
 size_t getMoney() const { return money_; }
 size_t getAvailableSpace() const { return availableSpace_; }
-size_t getSpeed() const { return ship_->getSpeed(); }
-Cargo* getCargo(size_t index) const { return &startPlayerShip_.getCargo(); }
+size_t getSpeed() const { return ship_.getSpeed(); }
+//Cargo getCargo();
 
 private:
-
-Ship startPlayerShip_ = { };
-std::shared_ptr<Ship> ship_ = nullptr;
-size_t money_ = { };
-size_t availableSpace_ = { 1 };
+Ship ship_;
+size_t money_;
+size_t availableSpace_;
 
 void checkAvailableSpace();
 

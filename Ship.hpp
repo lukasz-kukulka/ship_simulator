@@ -1,11 +1,14 @@
 #pragma once
 #include <string>
+#include <vector>
 #include "Cargo.hpp"
+#include "Item.hpp"
+#include <memory>
 
 class Ship
 {
 public:
-    Ship() = default;
+    Ship();
     Ship(int, const std::string&, std::size_t, std::size_t, std::size_t);
     Ship(int, std::size_t, std::size_t);
 
@@ -17,12 +20,13 @@ public:
     std::size_t getSpeed() const { return speed_; }
     std::size_t getMaxCrew() const { return maxCrew_; }
     std::size_t getCapacity() const { return capacity_; }
-    Cargo getCargo() const { return cargo_; }
+    //Cargo getCargo() { return *cargo_; }
     void setName(const std::string& name) { name_ = name; }
+    void load(std::shared_ptr<Cargo>cargo);
 
 private:
-    Cargo cargo_;
-    const int id_ {-1};
+    //std::vector<std::shared_ptr<Cargo>> cargo_;
+    int id_ { -1 };
     std::string name_;
     std::size_t speed_;
     std::size_t maxCrew_;

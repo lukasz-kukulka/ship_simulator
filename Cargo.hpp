@@ -18,8 +18,9 @@ public:
     virtual std::size_t getBestPrice() const = 0; //{ return bestPrice_; }
 
 protected:
-    std::size_t price_;
-    std::string name_;
-    std::size_t amount_;
-    std::size_t bestPrice_;
+    
+    std::size_t price_ = { 0 }; 
+    std::string name_ = {"None"};
+    std::size_t amount_ = { 0 };
+    std::size_t bestPrice_ = { 0 };
 };
