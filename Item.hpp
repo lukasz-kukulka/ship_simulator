@@ -1,16 +1,19 @@
 #pragma once
 #include <iostream>
 #include "Cargo.hpp"
+#include <string>
 
 class Item : public Cargo {
 
 public:
+    //Item() = default;
+    //Item(std::string, std::size_t, std::size_t);
 
     enum class Rarity { common = 1, 
                         rare = 2, 
                         epic = 4,
                         legendary = 8 };
-
+    //Override form Cargo
     std::size_t getPrice() const override;
     std::string getName() const override { return name_; }
     std::size_t getAmount() const override { return amount_; }

@@ -2,8 +2,6 @@
 #include <algorithm>
 #include <iostream>
 
-Ship::Ship(){}
-
 Ship::Ship(int id, 
            const std::string& name, 
            std::size_t speed, 
@@ -37,15 +35,19 @@ Ship& Ship::operator-=(const int delCrew){
 	}
 }
 
-// std::vector<Cargo> Ship::getCargo(){
-//     std::vector<Cargo>cargo;
-//     return cargo;
-// }
+void Ship::load(const std::shared_ptr<Cargo> cargo) {
+    auto checkCargo = std::find_if(std::begin(cargo_), std::end(cargo_), [cargo](const auto& ele){return cargo == ele ;});
+    if(checkCargo != cargo_.end()){
+        auto ptrToElement = checkCargo->get();
+        ptrToElement += cargo->getAmount();
+    } else {
+        cargo_.push_back(cargo); 
+    }
+    
+}
 
-// void Ship::load(std::shared_ptr<Cargo> cargo) {
-//     cargo_.push_back(cargo);
-// }
+void Ship::unload(Cargo* cargo){
+    auto checkCargo = std::find_if(std::begin(cargo_), std::end(cargo_), [cargo](const auto& ele){return cargo == ele.get() ;});
+    cargo_.erase(checkCargo);
 
-//void unload(Cargo* cargo){
-    //auto result1 = std::find(std::begin(cargo_), std::end(cargo_), cargo);
-//}
+}
