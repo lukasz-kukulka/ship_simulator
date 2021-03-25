@@ -5,7 +5,7 @@
 class Alcohol : public Cargo {
 
 public:
-    //override after Cargo class
+    //override from Cargo class
     Cargo& operator+=(const size_t) override;
     Cargo& operator-=(const size_t) override;
     bool operator==(const Cargo&) const override;

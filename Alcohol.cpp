@@ -1,10 +1,10 @@
 #include "Alcohol.hpp"
 
-Cargo& Cargo::operator+=(const size_t addAmount){
+Cargo& Alcohol::operator+=(const size_t addAmount){
     amount_ +=addAmount;
     return *this;
 }
-Cargo& Cargo::operator-=(const size_t delAmount){
+Cargo& Alcohol::operator-=(const size_t delAmount){
     if (delAmount > amount_){
         return *this;
     } else {
@@ -12,8 +12,8 @@ Cargo& Cargo::operator-=(const size_t delAmount){
         return *this;
     }
 }
-bool Cargo::operator==(const Cargo& cargoCompare) const{
-	if (name_ == cargoCompare.name_){
+bool Alcohol::operator==(const Cargo& cargoCompare) const{
+	if (name_ == cargoCompare.getName()){
 		return true;
 	} else {
 		return false;
