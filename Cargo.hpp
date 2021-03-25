@@ -8,9 +8,9 @@ public:
 
     Cargo(std::string, std::size_t, std::size_t);
 
-    Cargo& operator+=(const size_t);
-    Cargo& operator-=(const size_t);
-    bool operator==(const Cargo&) const;
+    virtual Cargo& operator+=(const size_t) = 0;
+    virtual Cargo& operator-=(const size_t) = 0;
+    virtual bool operator==(const Cargo&) const = 0;
 
     virtual std::size_t getPrice() const = 0;
     virtual std::string getName() const = 0; // { return name_; }
