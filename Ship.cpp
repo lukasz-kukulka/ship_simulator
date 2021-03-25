@@ -5,12 +5,12 @@
 Ship::Ship(int id, 
            const std::string& name, 
            std::size_t speed, 
-           std::size_t maxCrew, 
+           int maxCrew, 
            std::size_t capacity)
            : id_(id), name_(name), speed_(speed), maxCrew_(maxCrew), capacity_(capacity) {}
 Ship::Ship(int id, 
            std::size_t speed, 
-           std::size_t maxCrew) : Ship(id, "", speed, maxCrew, 0) {}
+           int maxCrew) : Ship(id, "", speed, maxCrew, 0) {}
          
 
 Ship& Ship::operator+=(const int addCrew){

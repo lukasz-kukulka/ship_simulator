@@ -8,8 +8,8 @@ public:
 
     Cargo(std::string, std::size_t, std::size_t);
 
-    Cargo& operator+=(const int);
-    Cargo& operator-=(const int);
+    Cargo& operator+=(const size_t);
+    Cargo& operator-=(const size_t);
     bool operator==(const Cargo&) const;
 
     virtual std::size_t getPrice() const = 0;

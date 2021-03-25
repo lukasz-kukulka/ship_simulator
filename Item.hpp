@@ -6,7 +6,6 @@
 class Item : public Cargo {
 
 public:
-    //Item() = default;
     //Item(std::string, std::size_t, std::size_t);
 
     enum class Rarity { common = 1, 
@@ -20,6 +19,6 @@ public:
     std::size_t getBestPrice() const override{ return bestPrice_; }
 
 private:
-    Rarity const rarity_;
+    Rarity rarity_;
 
 };

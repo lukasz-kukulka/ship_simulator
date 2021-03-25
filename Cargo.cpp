@@ -6,11 +6,11 @@ Cargo::Cargo(std::string name,
 	
 }
 
-Cargo& Cargo::operator+=(const int addAmount){
+Cargo& Cargo::operator+=(const size_t addAmount){
     amount_ +=addAmount;
     return *this;
 }
-Cargo& Cargo::operator-=(const int delAmount){
+Cargo& Cargo::operator-=(const size_t delAmount){
     if (delAmount > amount_){
         return *this;
     } else {

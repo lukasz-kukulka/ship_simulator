@@ -7,8 +7,8 @@
 class Ship
 {
 public:
-    Ship(int, const std::string&, std::size_t, std::size_t, std::size_t);
-    Ship(int, std::size_t, std::size_t);
+    Ship(int, const std::string&, std::size_t, int, std::size_t);
+    Ship(int, std::size_t, int);
 
     Ship& operator+=(const int);
     Ship& operator-=(const int);
@@ -28,7 +28,7 @@ private:
     int id_ { -1 };
     std::string name_;
     std::size_t speed_;
-    std::size_t maxCrew_;
-    std::size_t crew_;
-    std::size_t capacity_;
+    int maxCrew_;
+    int crew_;
+    std::size_t capacity_{ 1000 };
 };
