@@ -16,8 +16,9 @@ public:
     std::size_t getAmount() const override { return amount_; }
     std::size_t getBestPrice() const override{ return bestPrice_; }
     std::size_t getRottenTime() const { return rottenTime_; }
+    void nexDay();
 
-private:
+protected:
     std::size_t rottenTime_ { 10 };
 
 };

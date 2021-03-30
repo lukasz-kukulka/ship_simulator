@@ -32,3 +32,7 @@ bool Fruit::operator==(const Cargo& cargoCompare) const{
 std::size_t Fruit::getPrice() const { 
     return price_ * (rottenTime_/10);
 }
+
+void Fruit::nexDay(){
+    rottenTime_ --;
+}

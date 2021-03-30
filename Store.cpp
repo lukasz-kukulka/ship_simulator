@@ -1,4 +1,6 @@
 #include "Store.hpp"
+#include <random>
+#include <iostream>
 
 Store::Store(size_t positionX, size_t positionY) : positionX_(positionX), positionY_(positionY){
 
@@ -52,4 +54,21 @@ bool Store::checkSpace(size_t quantityToBuy, size_t availablePlayerSpace){
         tradeStatus_ = Response::lack_of_space;
         return false;
     }
+}
+
+size_t Store::randomGenerate(int min, int max){
+    std::random_device rd; 
+    std::mt19937 gen(rd()); 
+    std::uniform_int_distribution<> distrib(min, max);
+    return distrib(gen);
+}
+
+void Store::nextDay(){
+    
+}
+
+void Store::generateStockInStore(){
+    size_t itemsNumber = randomGenerate(1, 10);
+    itemsNumber++; // change this
+    
 }

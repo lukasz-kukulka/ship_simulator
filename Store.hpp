@@ -17,15 +17,20 @@ public:
 
     Response buy(Cargo*, size_t, Player*);
     Response sell(Cargo*, size_t, Player*);
+    void nextDay();
+
+
+private:
     void printMessage();
     bool checkMoney(size_t, size_t, size_t);
     bool checkCargo(size_t, size_t);
     bool checkSpace(size_t, size_t);
+    size_t randomGenerate(int, int);
     size_t getPrice() { return itemPrice_; }
     size_t getQuantity() { return itemQuantity_; }
-
-private:
     void generateItemStatus(Cargo*, size_t, Player*);
+    //std::shared_ptr<Cargo>;
+    void generateStockInStore();
     Response tradeStatus_;
     std::shared_ptr<Response>ptrStatus_ = std::make_shared<Response>(Response::done);
     size_t positionX_;
@@ -34,6 +39,4 @@ private:
     std::string messageError_ { "" };
     size_t itemPrice_;
     size_t itemQuantity_;
-
-
 };

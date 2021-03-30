@@ -6,8 +6,7 @@ Ship::Ship(int id,
            const std::string& name, 
            std::size_t speed, 
            int maxCrew, 
-           std::size_t capacity)
-           : id_(id), name_(name), speed_(speed), maxCrew_(maxCrew), capacity_(capacity) {}
+           std::size_t capacity) : id_(id), name_(name), speed_(speed), maxCrew_(maxCrew), capacity_(capacity) {}
 Ship::Ship(int id, 
            std::size_t speed, 
            int maxCrew) : Ship(id, "", speed, maxCrew, 0) {}
@@ -34,6 +33,7 @@ Ship& Ship::operator-=(const int delCrew){
 		return *this;
 	}
 }
+
 
 void Ship::load(const std::shared_ptr<Cargo> cargo) {
     auto checkCargo = std::find_if(std::begin(cargo_), std::end(cargo_), [cargo](const auto& ele){return cargo == ele ;});

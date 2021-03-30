@@ -13,10 +13,12 @@ public:
     Ship& operator+=(const int);
     Ship& operator-=(const int);
 
+
     std::size_t getId() const { return id_; }
     std::string getName() const { return name_; }
     std::size_t getSpeed() const { return speed_; }
     std::size_t getMaxCrew() const { return maxCrew_; }
+    std::size_t getCrew() const { return crew_; }
     std::size_t getCapacity() const { return capacity_; }
     //Cargo getCargo() { return *cargo_; }
     void setName(const std::string& name) { name_ = name; }
