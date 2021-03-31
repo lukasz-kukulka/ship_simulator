@@ -6,10 +6,10 @@ Ship::Ship(int id,
            const std::string& name, 
            std::size_t speed, 
            int maxCrew, 
-           std::size_t capacity) : id_(id), name_(name), speed_(speed), maxCrew_(maxCrew), capacity_(capacity) {}
+           std::size_t capacity, Delegate* delegate) : id_(id), name_(name), speed_(speed), maxCrew_(maxCrew), capacity_(capacity), delegate_(delegate) {}
 Ship::Ship(int id, 
            std::size_t speed, 
-           int maxCrew) : Ship(id, "", speed, maxCrew, 0) {}
+           int maxCrew, Delegate* delegate) : Ship(id, "", speed, maxCrew, 0, delegate) {}
          
 
 Ship& Ship::operator+=(const int addCrew){
@@ -50,4 +50,8 @@ void Ship::unload(Cargo* cargo){
     auto checkCargo = std::find_if(std::begin(cargo_), std::end(cargo_), [cargo](const auto& ele){return cargo == ele.get() ;});
     cargo_.erase(checkCargo);
 
+}
+
+void Ship::nextDay(){
+    delegate_->payCrew(crew_);
 }
