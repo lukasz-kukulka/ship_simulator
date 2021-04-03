@@ -3,8 +3,9 @@
 #include <vector>
 #include <memory>
 #include "Cargo.hpp"
+#include "Obserwer.hpp"
 
-class Ship 
+class Ship : public Obserwer
 {
 public:
     class Delegate
