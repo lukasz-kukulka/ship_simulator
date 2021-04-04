@@ -6,10 +6,16 @@ Ship::Ship(int id,
            const std::string& name, 
            std::size_t speed, 
            int maxCrew, 
-           std::size_t capacity, Delegate* delegate) : id_(id), name_(name), speed_(speed), maxCrew_(maxCrew), capacity_(capacity), delegate_(delegate) {}
+           std::size_t capacity, 
+           Delegate* delegate, 
+           Time* time) : id_(id), name_(name), speed_(speed), maxCrew_(maxCrew), capacity_(capacity), delegate_(delegate), time_(time) {
+               time_->addObserwer(this);
+           }
 Ship::Ship(int id, 
            std::size_t speed, 
-           int maxCrew, Delegate* delegate) : Ship(id, "", speed, maxCrew, 0, delegate) {}
+           int maxCrew, 
+           Delegate* delegate, 
+           Time* time) : Ship(id, "Empty", speed, maxCrew, 0, delegate, time) {}
          
 
 Ship& Ship::operator+=(const int addCrew){

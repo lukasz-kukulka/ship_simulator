@@ -4,6 +4,7 @@
 #include <memory>
 #include "Cargo.hpp"
 #include "Obserwer.hpp"
+#include "Time.hpp"
 
 class Ship : public Obserwer
 {
@@ -14,13 +15,15 @@ public:
         virtual void payCrew(int payCrew) = 0;
         virtual ~Delegate() {} ; 
     };
-    Ship() = default;
-    Ship(int, const std::string&, std::size_t, int, std::size_t, Delegate*);
-    Ship(int, std::size_t, int, Delegate*);
+    Ship(int, const std::string&, std::size_t, int, std::size_t, Delegate*, Time*);
+    Ship(int, std::size_t, int, Delegate*, Time* );
+    ~Ship() override {};
 
     Ship& operator+=(const int);
     Ship& operator-=(const int);
 
+    //override Observer
+    void nextDay() override;
     
     std::size_t getId() const { return id_; }
     std::string getName() const { return name_; }
@@ -32,7 +35,6 @@ public:
     void setName(const std::string& name) { name_ = name; }
     void load(const std::shared_ptr<Cargo>);
     void unload(Cargo*);
-    void nextDay();
 
 private:
     std::vector<std::shared_ptr<Cargo>> cargo_;
@@ -43,4 +45,5 @@ private:
     int crew_ { 100 };
     std::size_t capacity_ { 1000 };
     Delegate* delegate_;
+    Time* time_;
 };

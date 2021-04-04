@@ -3,8 +3,9 @@
 #include "Cargo.hpp"
 #include <string>
 #include <memory>
+#include "Obserwer.hpp"
 
-class Store{
+class Store : public Obserwer{
 public:
     Store(size_t, size_t);
 
@@ -17,10 +18,14 @@ public:
 
     Response buy(Cargo*, size_t, Player*);
     Response sell(Cargo*, size_t, Player*);
+
+    //override Observer
     void nextDay();
 
 
 private:
+
+
     void printMessage();
     bool checkMoney(size_t, size_t, size_t);
     bool checkCargo(size_t, size_t);

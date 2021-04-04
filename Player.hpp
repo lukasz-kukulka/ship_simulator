@@ -11,6 +11,7 @@ size_t getMoney() const { return money_; }
 size_t getAvailableSpace() const { return availableSpace_; }
 size_t getSpeed() const { return ship_->getSpeed(); }
 Cargo* getCargo(size_t index) const; 
+
 //overide from Delegate
 void payCrew(int payCrew) override;
 

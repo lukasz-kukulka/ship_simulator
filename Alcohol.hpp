@@ -18,5 +18,5 @@ public:
 private:
     std::size_t purity_ { 40 };
     std::size_t const maxPurity_ = { 96 };
-
+    //void nextDay() override {;}
 };
