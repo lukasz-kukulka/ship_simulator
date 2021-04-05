@@ -4,11 +4,12 @@
 #include <string>
 #include <memory>
 #include "Obserwer.hpp"
+#include "Time.hpp"
 
 class Store : public Obserwer{
 public:
-    Store(size_t, size_t);
-
+    Store(Time*);
+    ~Store() override;
     enum class Response : uint8_t {
         done, 
         lack_of_money, 
@@ -44,4 +45,5 @@ private:
     std::string messageError_ { "" };
     size_t itemPrice_;
     size_t itemQuantity_;
+    Time* time_;
 };

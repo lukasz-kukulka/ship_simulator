@@ -2,8 +2,12 @@
 #include <random>
 #include <iostream>
 
-Store::Store(size_t positionX, size_t positionY) : positionX_(positionX), positionY_(positionY){
+Store::Store(Time* time) : time_(time) {
+    time_->addObserwer(this);
+}
 
+Store::~Store(){
+    time_->deleteObserwer(this);
 }
 
 Store::Response Store::buy(Cargo* cargo, size_t amount, Player* player){

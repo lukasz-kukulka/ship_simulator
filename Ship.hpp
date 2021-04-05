@@ -17,7 +17,7 @@ public:
     };
     Ship(int, const std::string&, std::size_t, int, std::size_t, Delegate*, Time*);
     Ship(int, std::size_t, int, Delegate*, Time* );
-    ~Ship() override {};
+    ~Ship() override;
 
     Ship& operator+=(const int);
     Ship& operator-=(const int);

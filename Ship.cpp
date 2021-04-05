@@ -16,7 +16,10 @@ Ship::Ship(int id,
            int maxCrew, 
            Delegate* delegate, 
            Time* time) : Ship(id, "Empty", speed, maxCrew, 0, delegate, time) {}
-         
+
+Ship::~Ship(){
+    time_->deleteObserwer(this);
+}         
 
 Ship& Ship::operator+=(const int addCrew){
     if (crew_ + addCrew <= maxCrew_){
