@@ -1,10 +1,10 @@
 #pragma once
 #include <string>
 #include <iostream>
-//#include "Obserwer.hpp"
+#include "Obserwer.hpp"
 
-class Cargo { //}: public Obserwer {
-
+class Cargo : public Obserwer 
+{
 public:
 
     Cargo(std::string, std::size_t, std::size_t);

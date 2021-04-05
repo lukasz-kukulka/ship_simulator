@@ -1,11 +1,12 @@
 #pragma once
 #include <iostream>
 #include "Cargo.hpp"
-
+// #include "Obserwer.hpp"
+// #include "Time.hpp"
 class Fruit : public Cargo {
 
 public:
-
+    ~Fruit() override {};
     Fruit& operator--();
     //override from Cargo class
     Cargo& operator+=(const size_t) override;
@@ -16,9 +17,10 @@ public:
     std::size_t getAmount() const override { return amount_; }
     std::size_t getBestPrice() const override{ return bestPrice_; }
     std::size_t getRottenTime() const { return rottenTime_; }
-    void nexDay();
+    void nextDay() override;
 
 protected:
     std::size_t rottenTime_ { 10 };
+
 
 };

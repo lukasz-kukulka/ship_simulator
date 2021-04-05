@@ -1,5 +1,6 @@
 #include "Fruit.hpp"
 
+
 Fruit& Fruit::operator--(){
     if(Fruit::rottenTime_ > 0){
         --rottenTime_;
@@ -33,6 +34,6 @@ std::size_t Fruit::getPrice() const {
     return price_ * (rottenTime_/10);
 }
 
-void Fruit::nexDay(){
+void Fruit::nextDay(){
     rottenTime_ --;
 }
