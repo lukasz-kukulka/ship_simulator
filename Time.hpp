@@ -12,7 +12,7 @@ public:
     int getElapseTime() const { return elapseTime_; }
 
 private:
-    int elapseTime_;
+    int elapseTime_ { 1 };
     std::vector<Obserwer*>obserwer_;
 
 
