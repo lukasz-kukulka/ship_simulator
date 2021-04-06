@@ -1,18 +1,21 @@
 #pragma once
 #include <iostream>
+#include "Time.hpp"
+#include <memory>
 
 class Game{
 
 public:
-    Game(size_t, size_t, size_t);
+    Game(int, int, int);
     void startGame();
 private:
 
     void printIntenface();
     void printMenu();
-
-    size_t curentlyMoney_;
-    size_t gameDays_;
-    size_t gameGoal_;
-
+    bool winCondition() const;
+    bool loseCondition() const;
+    int curentlyMoney_;
+    int gameDays_;
+    int gameGoal_;
+    std::shared_ptr<Time>time_;
 };

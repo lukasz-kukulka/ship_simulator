@@ -6,7 +6,6 @@
 class Time
 {
 public:
-    Time();
     void addObserwer(Obserwer*);
     void deleteObserwer(Obserwer*);
     int getElapseTime() const { return elapseTime_; }

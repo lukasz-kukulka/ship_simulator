@@ -1,11 +1,11 @@
 #include "Game.hpp"
 #include "Ship.hpp"
-#include <memory>
 #include <iomanip> 
 
-Game::Game(size_t money, 
-           size_t days, 
-           size_t goal) : curentlyMoney_(money), gameDays_(days), gameGoal_(goal){
+Game::Game(int money, 
+           int days, 
+           int goal) : curentlyMoney_(money), gameDays_(days), gameGoal_(goal){
+    time_ = std::make_shared<Time>();
     
 }
 
@@ -38,3 +38,9 @@ void Game::printMenu(){
     std::cout << "#" << std::setfill('-')  << std::setw (31) << "#\n\n";
 }
 
+bool Game::winCondition() const{
+    return curentlyMoney_ > gameGoal_;
+}
+bool Game::loseCondition() const{
+    return ((curentlyMoney_ < gameGoal_ && time_->getElapseTime() >= static_cast<int>(gameDays_)) || (curentlyMoney_ <= 0));
+}

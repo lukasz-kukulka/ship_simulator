@@ -2,9 +2,9 @@
 #include <random>
 #include <iostream>
 
-constexpr size_t start_money = 1000;
-constexpr size_t game_days = 100;
-constexpr size_t final_goal = 2000;
+constexpr int start_money = 1000;
+constexpr int game_days = 100;
+constexpr int final_goal = 2000;
 
 int main() {
     Game game(start_money, game_days, final_goal);
