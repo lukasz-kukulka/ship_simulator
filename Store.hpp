@@ -28,6 +28,7 @@ public:
 private:
 
     void generateItems();
+    void generateAlcohol();
     void printMessage();
     bool checkMoney(size_t, size_t, size_t);
     bool checkCargo(size_t, size_t);

@@ -71,7 +71,9 @@ size_t Store::randomGenerate(int min, int max){
 }
 
 void Store::nextDay(){
-    
+    for (auto& cargo : cargo_){
+        cargo->getAmount
+    }
 }
 
 void Store::generateStockInStore(){
@@ -98,13 +100,25 @@ std::ostream& operator<<(std::ostream& oper, const Store& store){
         oper << std::setw (static_cast<int>(std::to_string(cargo->getBestPrice()).size() / 2 + 10)) << cargo->getBestPrice() << std::setw (static_cast<int>(10 - (std::to_string(cargo->getBestPrice()).size() / 2))) << "|";
         oper << std::setw (static_cast<int>(cargo->getUniqueStat().size() / 2 + 15)) << cargo->getUniqueStat() << std::setw (static_cast<int>(16 - (cargo->getUniqueStat().size() / 2))) << "|\n";
         oper << "|" << std::setfill('-') << std::setw (97) << "|\n";
-        oper << "\n\n\n\n" << cargo;
         it++;
     }
-    
     return oper;
 }
 
 void Store::generateItems(){
-    cargo_.push_back(std::make_shared<Alcohol>(Alcohol("TEST_NAME", 200, 100, 20)));
+    generateAlcohol();
+}
+
+void Store::generateAlcohol(){
+    cargo_.push_back(std::make_shared<Alcohol>(Alcohol("Light beer", randomGenerate(0, 100), randomGenerate(10, 120), 3)));
+    cargo_.push_back(std::make_shared<Alcohol>(Alcohol("Beer", randomGenerate(0, 100), randomGenerate(10, 140), 5)));
+    cargo_.push_back(std::make_shared<Alcohol>(Alcohol("Dark beer", randomGenerate(0, 100), randomGenerate(15, 160), 7)));
+    cargo_.push_back(std::make_shared<Alcohol>(Alcohol("White wine", randomGenerate(0, 100), randomGenerate(20, 180), 11)));
+    cargo_.push_back(std::make_shared<Alcohol>(Alcohol("Red wine", randomGenerate(0, 100), randomGenerate(25, 200), 12)));
+    cargo_.push_back(std::make_shared<Alcohol>(Alcohol("Martini", randomGenerate(0, 100), randomGenerate(30, 300), 15)));
+    cargo_.push_back(std::make_shared<Alcohol>(Alcohol("Rum", randomGenerate(0, 100), randomGenerate(35, 400), 35)));
+    cargo_.push_back(std::make_shared<Alcohol>(Alcohol("Whisky", randomGenerate(0, 100), randomGenerate(40, 500), 39)));
+    cargo_.push_back(std::make_shared<Alcohol>(Alcohol("Wodka", randomGenerate(0, 100), randomGenerate(45, 600), 42)));
+    cargo_.push_back(std::make_shared<Alcohol>(Alcohol("Gin", randomGenerate(0, 100), randomGenerate(50, 700), 37)));
+    cargo_.push_back(std::make_shared<Alcohol>(Alcohol("Whisky", randomGenerate(0, 100), randomGenerate(100, 1000), 39)));
 }

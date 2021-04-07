@@ -13,14 +13,15 @@ public:
     virtual bool operator==(const Cargo&) const = 0;
 
     virtual std::size_t getPrice() const = 0;
-    virtual std::string getName() const = 0; // { return name_; }
-    virtual std::size_t getAmount() const = 0; //{ return amount_; }
-    virtual std::size_t getBestPrice() const = 0; //{ return bestPrice_; }
+    virtual std::string getName() const = 0;
+    virtual std::size_t getAmount() const = 0;
+    virtual std::size_t getBestPrice() const = 0;
     virtual std::string getUniqueStat() const = 0; 
+    //virtual void changeAmount(uint8_t, uint8_t) = 0;
 
 protected:
     
-    std::size_t price_ = { 0 }; 
+    std::size_t price_ = { 10 }; 
     std::string name_ = {"None"};
     std::size_t amount_ = { 0 };
     std::size_t bestPrice_ = { 0 };
