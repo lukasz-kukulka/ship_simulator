@@ -18,7 +18,7 @@ public:
     std::size_t getBestPrice() const override{ return bestPrice_; }
     std::size_t getRottenTime() const { return rottenTime_; }
     void nextDay() override;
-
+    std::string getUniqueStat() const override;
 protected:
     std::size_t rottenTime_ { 10 };
 

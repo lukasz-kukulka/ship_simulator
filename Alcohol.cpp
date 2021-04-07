@@ -30,3 +30,7 @@ bool Alcohol::operator==(const Cargo& cargoCompare) const{
 std::size_t Alcohol::getPrice() const {
     return price_ / maxPurity_ * purity_;
 }
+
+std::string Alcohol::getUniqueStat() const {
+    return std::to_string(purity_) + " percent pure alcohol";
+}

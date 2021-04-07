@@ -37,3 +37,7 @@ std::size_t Fruit::getPrice() const {
 void Fruit::nextDay(){
     rottenTime_ --;
 }
+
+std::string Fruit::getUniqueStat() const {
+    return std::to_string(rottenTime_) + " days to rotten";
+}

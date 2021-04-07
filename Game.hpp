@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include "Time.hpp"
+#include "Store.hpp"
 #include <memory>
 
 class Game{

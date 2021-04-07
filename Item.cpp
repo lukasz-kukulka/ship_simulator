@@ -25,3 +25,8 @@ bool Item::operator==(const Cargo& cargoCompare) const{
 		return false;
 	}
 }
+
+std::string Item::getUniqueStat() const{
+    
+    return "RARITY";
+}

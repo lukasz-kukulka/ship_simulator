@@ -6,13 +6,18 @@ Game::Game(int money,
            int days, 
            int goal) : curentlyMoney_(money), gameDays_(days), gameGoal_(goal){
     time_ = std::make_shared<Time>();
-    
+
 }
 
 void Game::startGame(){
+    
     printIntenface();
     printMenu();
 
+//TEST
+    Store testStore(time_.get());
+    std::cout << testStore << "\n";
+//TEST
 }
 
 void Game::printIntenface(){

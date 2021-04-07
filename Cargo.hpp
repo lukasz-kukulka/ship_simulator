@@ -16,7 +16,7 @@ public:
     virtual std::string getName() const = 0; // { return name_; }
     virtual std::size_t getAmount() const = 0; //{ return amount_; }
     virtual std::size_t getBestPrice() const = 0; //{ return bestPrice_; }
-
+    virtual std::string getUniqueStat() const = 0; 
 
 protected:
     

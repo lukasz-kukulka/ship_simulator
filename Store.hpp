@@ -22,7 +22,7 @@ public:
 
     //override Observer
     void nextDay();
-    // friend std::ostream& operator<<(std::ostream&, const Store&);
+    friend std::ostream& operator<<(std::ostream&, const Store&);
 
 
 private:

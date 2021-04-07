@@ -6,6 +6,7 @@
 
 Store::Store(Time* time) : time_(time) {
     time_->addObserwer(this);
+    generateItems();
 }
 
 Store::~Store(){
@@ -79,19 +80,31 @@ void Store::generateStockInStore(){
     
 }
 
-// std::ostream& operator<<(std::ostream& oper, const Store& store){
-//     oper << "|" << std::setfill('-')  << std::setw (50) << "|\n";
-//     for (const auto& cargo : store.cargo_) {
-        
-//         oper << "|" << std::setfill(' ')  << std::setw (50) << cargo->getName();
-//         std::cout << "|" << std::setfill('-')  << std::setw (50) << "|\n";
-        
-//     }
+std::ostream& operator<<(std::ostream& oper, const Store& store){
+    oper << "|" << std::setfill('-') << std::setw (97) << "|\n";
+    oper << "|" << std::setfill(' ') << std::setw (6) << "|" << std::setw (20) << "|" << std::setw (20) << "|" << std::setw (20) << "|" << std::setw (31) << "|\n";
+    oper << "|" << std::setw (4) << "ID" << std::setw (2) << "|";
+    oper << std::setw (14) << "CARGO NAME" << std::setw (6) << "|";
+    oper << std::setw (12) << "AMOUNT" << std::setw (8) << "|";
+    oper << std::setw (12) << "PRICE" << std::setw (8) << "|";
+    oper << std::setw (23) << "UNIQUE STATISTIC" << std::setw (7) << "|";
+    oper << "\n|" << std::setw (6) << "|" << std::setw (20) << "|" << std::setw (20) << "|" << std::setw (20) << "|" << std::setw (31) << "|\n";
+    oper << "|" << std::setfill('-') << std::setw (97) << "|\n";
+    int it = 1;
+    for (const auto& cargo : store.cargo_) {
+        oper << std::setfill(' ') << "|" << std::setw (static_cast<int>((std::to_string(it)).size() / 2 + 3)) << it << std::setw (static_cast<int>(3 - ((std::to_string(it)).size() / 2))) << "|";
+        oper << std::setw (static_cast<int>(cargo->getName().size() / 2 + 10)) << cargo->getName() << std::setw (static_cast<int>(10 - (cargo->getName().size() / 2))) << "|";
+        oper << std::setw (static_cast<int>(std::to_string(cargo->getAmount()).size() / 2 + 10)) << cargo->getAmount() << std::setw (static_cast<int>(10 - (std::to_string(cargo->getAmount()).size() / 2))) << "|";
+        oper << std::setw (static_cast<int>(std::to_string(cargo->getBestPrice()).size() / 2 + 10)) << cargo->getBestPrice() << std::setw (static_cast<int>(10 - (std::to_string(cargo->getBestPrice()).size() / 2))) << "|";
+        oper << std::setw (static_cast<int>(cargo->getUniqueStat().size() / 2 + 15)) << cargo->getUniqueStat() << std::setw (static_cast<int>(16 - (cargo->getUniqueStat().size() / 2))) << "|\n";
+        oper << "|" << std::setfill('-') << std::setw (97) << "|\n";
+        oper << "\n\n\n\n" << cargo;
+        it++;
+    }
     
-//     return oper;
-// }
+    return oper;
+}
 
 void Store::generateItems(){
-    //std::make_shared<Alcohol>
     cargo_.push_back(std::make_shared<Alcohol>(Alcohol("TEST_NAME", 200, 100, 20)));
 }
