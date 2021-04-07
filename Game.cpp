@@ -44,3 +44,4 @@ bool Game::winCondition() const{
 bool Game::loseCondition() const{
     return ((curentlyMoney_ < gameGoal_ && time_->getElapseTime() >= static_cast<int>(gameDays_)) || (curentlyMoney_ <= 0));
 }
+

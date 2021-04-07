@@ -22,11 +22,12 @@ public:
 
     //override Observer
     void nextDay();
+    // friend std::ostream& operator<<(std::ostream&, const Store&);
 
 
 private:
 
-
+    void generateItems();
     void printMessage();
     bool checkMoney(size_t, size_t, size_t);
     bool checkCargo(size_t, size_t);
@@ -35,7 +36,7 @@ private:
     size_t getPrice() { return itemPrice_; }
     size_t getQuantity() { return itemQuantity_; }
     void generateItemStatus(Cargo*, size_t, Player*);
-    //std::shared_ptr<Cargo>;
+    std::vector<std::shared_ptr<Cargo>>cargo_;
     void generateStockInStore();
     Response tradeStatus_;
     std::shared_ptr<Response>ptrStatus_ = std::make_shared<Response>(Response::done);

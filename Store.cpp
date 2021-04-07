@@ -1,6 +1,8 @@
 #include "Store.hpp"
 #include <random>
 #include <iostream>
+#include "Alcohol.hpp"
+#include <iomanip>
 
 Store::Store(Time* time) : time_(time) {
     time_->addObserwer(this);
@@ -75,4 +77,21 @@ void Store::generateStockInStore(){
     size_t itemsNumber = randomGenerate(1, 10);
     itemsNumber++; // change this
     
+}
+
+// std::ostream& operator<<(std::ostream& oper, const Store& store){
+//     oper << "|" << std::setfill('-')  << std::setw (50) << "|\n";
+//     for (const auto& cargo : store.cargo_) {
+        
+//         oper << "|" << std::setfill(' ')  << std::setw (50) << cargo->getName();
+//         std::cout << "|" << std::setfill('-')  << std::setw (50) << "|\n";
+        
+//     }
+    
+//     return oper;
+// }
+
+void Store::generateItems(){
+    //std::make_shared<Alcohol>
+    cargo_.push_back(std::make_shared<Alcohol>(Alcohol("TEST_NAME", 200, 100, 20)));
 }

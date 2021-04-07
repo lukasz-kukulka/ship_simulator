@@ -1,5 +1,12 @@
 #include "Alcohol.hpp"
 
+Alcohol::Alcohol(std::string name, 
+                 size_t amount, 
+                 size_t bestPrice, 
+                 uint purity) : Cargo(name, amount, bestPrice), purity_(purity) {
+
+}
+
 Cargo& Alcohol::operator+=(const size_t addAmount){
     amount_ +=addAmount;
     return *this;

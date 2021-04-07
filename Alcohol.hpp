@@ -1,10 +1,12 @@
 #pragma once
 #include <iostream>
 #include "Cargo.hpp"
+#include <string>
 
 class Alcohol : public Cargo {
 
 public:
+    Alcohol(std::string, size_t, size_t, uint);
     //override from Cargo class
     Cargo& operator+=(const size_t) override;
     Cargo& operator-=(const size_t) override;
@@ -18,5 +20,5 @@ public:
 private:
     std::size_t purity_ { 40 };
     std::size_t const maxPurity_ = { 96 };
-    //void nextDay() override {;}
+    void nextDay() override {}
 };
