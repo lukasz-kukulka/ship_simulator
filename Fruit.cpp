@@ -41,3 +41,7 @@ void Fruit::nextDay(){
 std::string Fruit::getUniqueStat() const {
     return std::to_string(rottenTime_) + " days to rotten";
 }
+
+void Fruit::changeAmount(int8_t valueOne, int8_t valueTwo) {
+    amount_ += (valueOne - valueTwo);
+}

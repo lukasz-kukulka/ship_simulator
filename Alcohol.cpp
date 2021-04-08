@@ -34,3 +34,7 @@ std::size_t Alcohol::getPrice() const {
 std::string Alcohol::getUniqueStat() const {
     return std::to_string(purity_) + " % of pure alcohol";
 }
+
+void Alcohol::changeAmount(int8_t valueOne, int8_t valueTwo) {
+    amount_ += (valueOne - valueTwo);
+}

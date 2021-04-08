@@ -23,6 +23,9 @@ public:
     std::string getUniqueStat() const override;
     //override Cargo
     //void nextDay() override;
+
+    void changeAmount(int8_t, int8_t) override ;
+
 private:
     Rarity rarity_ ;
 

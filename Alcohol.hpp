@@ -17,6 +17,7 @@ public:
     std::size_t getBestPrice() const override{ return bestPrice_; }
     std::size_t getPurity() const { return purity_; }
     std::string getUniqueStat() const override;
+    void changeAmount(int8_t, int8_t) override;
 
 private:
     std::size_t purity_ { 40 };

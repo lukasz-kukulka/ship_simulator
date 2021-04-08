@@ -30,3 +30,7 @@ std::string Item::getUniqueStat() const{
     
     return "RARITY";
 }
+
+void Item::changeAmount(int8_t valueOne, int8_t valueTwo) {
+    amount_ += (valueOne - valueTwo);
+}

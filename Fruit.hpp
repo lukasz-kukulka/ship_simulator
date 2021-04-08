@@ -19,6 +19,8 @@ public:
     std::size_t getRottenTime() const { return rottenTime_; }
     void nextDay() override;
     std::string getUniqueStat() const override;
+
+    void changeAmount(int8_t, int8_t) override;
 protected:
     std::size_t rottenTime_ { 10 };
 

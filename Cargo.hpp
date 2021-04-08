@@ -17,7 +17,7 @@ public:
     virtual std::size_t getAmount() const = 0;
     virtual std::size_t getBestPrice() const = 0;
     virtual std::string getUniqueStat() const = 0; 
-    //virtual void changeAmount(uint8_t, uint8_t) = 0;
+    virtual void changeAmount(int8_t, int8_t) = 0;
 
 protected:
     
