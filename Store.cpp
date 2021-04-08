@@ -71,7 +71,9 @@ size_t Store::randomGenerate(int min, int max){
 }
 
 void Store::nextDay(){
-
+    for (auto& cargo : cargo_) {
+        cargo->changeAmount(static_cast<int8_t>(randomGenerate(0, 50)), static_cast<int8_t>(randomGenerate(0, 50)));
+    }
 }
 
 void Store::generateStockInStore(){

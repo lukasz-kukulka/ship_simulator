@@ -17,6 +17,8 @@ void Game::startGame(){
 //TEST
     Store testStore(time_.get());
     std::cout << testStore << "\n";
+    testStore.nextDay();
+    std::cout << testStore << "\n";
 //TEST
 }
 

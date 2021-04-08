@@ -21,7 +21,7 @@ public:
     Response sell(Cargo*, size_t, Player*);
 
     //override Observer
-    void nextDay();
+    void nextDay() override;
     friend std::ostream& operator<<(std::ostream&, const Store&);
 
 
