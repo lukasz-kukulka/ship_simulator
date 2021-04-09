@@ -2,11 +2,12 @@
 #include <random>
 #include <iostream>
 #include "Alcohol.hpp"
+#include "Item.hpp"
 #include <iomanip>
 
 Store::Store(Time* time) : time_(time) {
     time_->addObserwer(this);
-    generateItems();
+    generateAllCargo();
 }
 
 Store::~Store(){
@@ -26,7 +27,7 @@ Store::Response Store::sell(Cargo* cargo, size_t amount, Player* player){
 void Store::generateItemStatus(Cargo* cargo, size_t amount, Player* player){
     tradeStatus_ = Response::done;
     checkMoney(player->getMoney(), cargo->getPrice(), amount);
-    checkCargo(getQuantity(), amount);
+    checkCargo(cargo->getAmount(), amount);
     checkSpace(amount, player->getAvailableSpace());
     
 }
@@ -76,12 +77,6 @@ void Store::nextDay(){
     }
 }
 
-void Store::generateStockInStore(){
-    size_t itemsNumber = randomGenerate(1, 10);
-    itemsNumber++; // change this
-    
-}
-
 std::ostream& operator<<(std::ostream& oper, const Store& store){
     oper << "|" << std::setfill('-') << std::setw (97) << "|\n";
     oper << "|" << std::setfill(' ') << std::setw (6) << "|" << std::setw (20) << "|" << std::setw (20) << "|" << std::setw (20) << "|" << std::setw (31) << "|\n";
@@ -105,8 +100,9 @@ std::ostream& operator<<(std::ostream& oper, const Store& store){
     return oper;
 }
 
-void Store::generateItems(){
+void Store::generateAllCargo(){
     generateAlcohol();
+    generateItems();
 }
 
 void Store::generateAlcohol(){
@@ -121,4 +117,8 @@ void Store::generateAlcohol(){
     cargo_.push_back(std::make_shared<Alcohol>(Alcohol("Wodka", randomGenerate(0, 100), randomGenerate(45, 600), 42)));
     cargo_.push_back(std::make_shared<Alcohol>(Alcohol("Gin", randomGenerate(0, 100), randomGenerate(50, 700), 37)));
     cargo_.push_back(std::make_shared<Alcohol>(Alcohol("Whisky", randomGenerate(0, 100), randomGenerate(100, 1000), 39)));
+}
+
+void Store::generateItems(){
+    cargo_.push_back(std::make_shared<Item>(Item("Knife", randomGenerate(0, 2), randomGenerate(1000, 2000), randomGenerate(1, 4))));
 }

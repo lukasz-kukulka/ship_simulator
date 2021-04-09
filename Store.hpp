@@ -27,25 +27,21 @@ public:
 
 private:
 
-    void generateItems();
+    void generateAllCargo();
     void generateAlcohol();
+    void generateItems();
     void printMessage();
     bool checkMoney(size_t, size_t, size_t);
     bool checkCargo(size_t, size_t);
     bool checkSpace(size_t, size_t);
     size_t randomGenerate(int, int);
-    size_t getPrice() { return itemPrice_; }
-    size_t getQuantity() { return itemQuantity_; }
+    //size_t getPrice() { return itemPrice_; }
+    //size_t getQuantity() { return itemQuantity_; }
     void generateItemStatus(Cargo*, size_t, Player*);
     std::vector<std::shared_ptr<Cargo>>cargo_;
-    void generateStockInStore();
     Response tradeStatus_;
-    std::shared_ptr<Response>ptrStatus_ = std::make_shared<Response>(Response::done);
-    size_t positionX_;
-    size_t positionY_;
-    std::string name_;
+    //std::shared_ptr<Response>ptrStatus_ = std::make_shared<Response>(Response::done);
     std::string messageError_ { "" };
-    size_t itemPrice_;
-    size_t itemQuantity_;
+
     Time* time_;
 };

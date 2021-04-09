@@ -12,7 +12,7 @@ Game::Game(int money,
 void Game::startGame(){
     
     printIntenface();
-    printMenu();
+    //printMenu();
 
 //TEST
     Store testStore(time_.get());
