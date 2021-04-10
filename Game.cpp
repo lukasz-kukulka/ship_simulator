@@ -19,6 +19,10 @@ void Game::startGame(){
     std::cout << testStore << "\n";
     testStore.nextDay();
     std::cout << testStore << "\n";
+        testStore.nextDay();
+    std::cout << testStore << "\n";
+        testStore.nextDay();
+    std::cout << testStore << "\n";
 //TEST
 }
 

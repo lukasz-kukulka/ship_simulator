@@ -3,6 +3,7 @@
 #include <iostream>
 #include "Alcohol.hpp"
 #include "Item.hpp"
+#include "Fruit.hpp"
 #include <iomanip>
 
 Store::Store(Time* time) : time_(time) {
@@ -121,4 +122,17 @@ void Store::generateAlcohol(){
 
 void Store::generateItems(){
     cargo_.push_back(std::make_shared<Item>(Item("Knife", randomGenerate(0, 2), randomGenerate(1000, 2000), randomGenerate(1, 4))));
+    cargo_.push_back(std::make_shared<Item>(Item("Axe", randomGenerate(0, 2), randomGenerate(1000, 2000), randomGenerate(1, 4))));
+    cargo_.push_back(std::make_shared<Item>(Item("Lamp", randomGenerate(0, 2), randomGenerate(1000, 2000), randomGenerate(1, 4))));
+    cargo_.push_back(std::make_shared<Item>(Item("Helmet", randomGenerate(0, 2), randomGenerate(1000, 2000), randomGenerate(1, 4))));
+    cargo_.push_back(std::make_shared<Item>(Item("Gloves", randomGenerate(0, 2), randomGenerate(1000, 2000), randomGenerate(1, 4))));
+    cargo_.push_back(std::make_shared<Item>(Item("Shoes", randomGenerate(0, 2), randomGenerate(1000, 2000), randomGenerate(1, 4))));
+    cargo_.push_back(std::make_shared<Item>(Item("Pot", randomGenerate(0, 2), randomGenerate(1000, 2000), randomGenerate(1, 4))));
+    cargo_.push_back(std::make_shared<Item>(Item("Pan", randomGenerate(0, 2), randomGenerate(1000, 2000), randomGenerate(1, 4))));
+    cargo_.push_back(std::make_shared<Item>(Item("Plate", randomGenerate(0, 2), randomGenerate(1000, 2000), randomGenerate(1, 4))));
+    cargo_.push_back(std::make_shared<Item>(Item("Brush", randomGenerate(0, 2), randomGenerate(1000, 2000), randomGenerate(1, 4))));
+}
+
+void Store::generateFruits(){
+    cargo_.push_back(std::make_shared<Fruit>(Fruit("Orange", randomGenerate(0, 2), randomGenerate(1000, 2000))));
 }

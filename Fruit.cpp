@@ -1,5 +1,9 @@
 #include "Fruit.hpp"
 
+Fruit::Fruit(std::string name, 
+             size_t amount, 
+             size_t bestPrice) : Cargo(name, amount, bestPrice) {
+}
 
 Fruit& Fruit::operator--(){
     if(Fruit::rottenTime_ > 0){

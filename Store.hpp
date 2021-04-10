@@ -30,17 +30,15 @@ private:
     void generateAllCargo();
     void generateAlcohol();
     void generateItems();
+    void generateFruits();
     void printMessage();
     bool checkMoney(size_t, size_t, size_t);
     bool checkCargo(size_t, size_t);
     bool checkSpace(size_t, size_t);
     size_t randomGenerate(int, int);
-    //size_t getPrice() { return itemPrice_; }
-    //size_t getQuantity() { return itemQuantity_; }
     void generateItemStatus(Cargo*, size_t, Player*);
     std::vector<std::shared_ptr<Cargo>>cargo_;
     Response tradeStatus_;
-    //std::shared_ptr<Response>ptrStatus_ = std::make_shared<Response>(Response::done);
     std::string messageError_ { "" };
 
     Time* time_;

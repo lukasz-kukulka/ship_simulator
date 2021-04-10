@@ -1,13 +1,15 @@
 #pragma once
 #include <iostream>
 #include "Cargo.hpp"
-// #include "Obserwer.hpp"
-// #include "Time.hpp"
+#include <string>
+
 class Fruit : public Cargo {
 
 public:
+    Fruit (std::string, size_t, size_t);
     ~Fruit() override {};
     Fruit& operator--();
+
     //override from Cargo class
     Cargo& operator+=(const size_t) override;
     Cargo& operator-=(const size_t) override;

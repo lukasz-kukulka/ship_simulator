@@ -1,7 +1,7 @@
 #include "Item.hpp"
 #include <string>
 
-Item::Item(std::string name, std::size_t amount, std::size_t bestPrice, size_t rarity) : Cargo(name, amount, bestPrice)//, rarity_(static_cast<Rarity>(rarity)) {}
+Item::Item(std::string name, std::size_t amount, std::size_t bestPrice, size_t rarity) : Cargo(name, amount, bestPrice)
 {
     rarity_ = static_cast<Rarity>(countRarity(static_cast<uint8_t>(rarity)));
 }
@@ -46,15 +46,13 @@ std::string Item::getUniqueStat() const{
     } else {
         return "---------------";
     }
-
 }
 
 void Item::changeAmount(int8_t valueOne, int8_t valueTwo) {
-    amount_ = amount_ / static_cast<int8_t>(rarity_);
     if (static_cast<int8_t>(amount_) + (valueOne - valueTwo) <= 0){
         amount_ = 0;
     } else {
-        amount_ += (valueOne - valueTwo);
+        amount_ += ((valueOne - valueTwo)/ (static_cast<int8_t>(rarity_) * 2));
     }
 }
 
