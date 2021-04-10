@@ -31,6 +31,7 @@ private:
     void generateAlcohol();
     void generateItems();
     void generateFruits();
+    void generateDryFruits();
     void printMessage();
     bool checkMoney(size_t, size_t, size_t);
     bool checkCargo(size_t, size_t);

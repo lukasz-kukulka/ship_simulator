@@ -4,11 +4,13 @@
 class DryFruit : public Fruit{
 
 public:
-    DryFruit();
+    DryFruit(std::string, size_t, size_t);
 
-    std::size_t getPrice() const;
-    std::size_t getRottenTime() { return rottenTime_; }
+    std::size_t getPrice();
+    std::size_t getRottenTime() const;
+    std::string getUniqueStat() const;
+    static uint16_t dryFruitRottenTime_;
 private:
     void countRottenTime();
-
+    
 };

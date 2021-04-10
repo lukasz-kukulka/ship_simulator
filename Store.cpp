@@ -4,6 +4,7 @@
 #include "Alcohol.hpp"
 #include "Item.hpp"
 #include "Fruit.hpp"
+#include "DryFruit.hpp"
 #include <iomanip>
 
 Store::Store(Time* time) : time_(time) {
@@ -104,6 +105,8 @@ std::ostream& operator<<(std::ostream& oper, const Store& store){
 void Store::generateAllCargo(){
     generateAlcohol();
     generateItems();
+    generateFruits();
+    generateDryFruits();
 }
 
 void Store::generateAlcohol(){
@@ -134,5 +137,18 @@ void Store::generateItems(){
 }
 
 void Store::generateFruits(){
-    cargo_.push_back(std::make_shared<Fruit>(Fruit("Orange", randomGenerate(0, 2), randomGenerate(1000, 2000))));
+    cargo_.push_back(std::make_shared<Fruit>(Fruit("Orange", randomGenerate(0, 100), randomGenerate(10, 20))));
+    cargo_.push_back(std::make_shared<Fruit>(Fruit("Banana", randomGenerate(0, 100), randomGenerate(10, 20))));
+    cargo_.push_back(std::make_shared<Fruit>(Fruit("Apple", randomGenerate(0, 100), randomGenerate(10, 20))));
+    cargo_.push_back(std::make_shared<Fruit>(Fruit("Mango", randomGenerate(0, 100), randomGenerate(10, 20))));
+    cargo_.push_back(std::make_shared<Fruit>(Fruit("Lemon", randomGenerate(0, 100), randomGenerate(10, 20))));
+    cargo_.push_back(std::make_shared<Fruit>(Fruit("Grapes", randomGenerate(0, 100), randomGenerate(10, 20))));
+    cargo_.push_back(std::make_shared<Fruit>(Fruit("Strawbery", randomGenerate(0, 100), randomGenerate(10, 20))));
+    
+}
+
+void Store::generateDryFruits(){
+    cargo_.push_back(std::make_shared<DryFruit>(DryFruit("Dry banana", randomGenerate(0, 30), randomGenerate(10, 20))));
+    cargo_.push_back(std::make_shared<DryFruit>(DryFruit("Raisins", randomGenerate(0, 30), randomGenerate(10, 20))));
+    cargo_.push_back(std::make_shared<DryFruit>(DryFruit("Dry apple", randomGenerate(0, 30), randomGenerate(10, 20))));
 }

@@ -1,15 +1,29 @@
 #include "DryFruit.hpp"
 
+uint16_t DryFruit::dryFruitRottenTime_ = 0;
 
-std::size_t DryFruit::getPrice() const{
-    return Fruit::getPrice() * 3;
+DryFruit::DryFruit(std::string name, 
+             size_t amount, 
+             size_t bestPrice) : Fruit(name, amount, bestPrice) {
+}
+
+std::size_t DryFruit::getRottenTime() const{ 
+    return Fruit::getRottenTime() * 10 + static_cast<size_t>(dryFruitRottenTime_); 
+}
+
+std::size_t DryFruit::getPrice(){
+    return Fruit::getPrice() * 10;
 }
 
 void DryFruit::countRottenTime(){
-    static uint8_t dryFruitRottenTime = 0;
-    if (dryFruitRottenTime <= 10){
-        dryFruitRottenTime++;
+    if (dryFruitRottenTime_ <= 10){
+        dryFruitRottenTime_++;
     } else {
         rottenTime_--;
+        dryFruitRottenTime_ = 0;
     }
 } 
+
+std::string DryFruit::getUniqueStat() const {
+    return std::to_string(getRottenTime()) + " days to rotten";
+}
