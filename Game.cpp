@@ -5,30 +5,26 @@
 
 Game::Game(int money, 
            int days, 
-           int goal) : curentlyMoney_(money), gameDays_(days), gameGoal_(goal), time_(std::make_shared<Time>()){
+           int goal) : curentlyMoney_(money), gameDays_(days), gameGoal_(goal), time_(std::make_shared<Time>()), testStore(time_.get()){
 }
 
 void Game::startGame(){
     
     printIntenface();
+    //chooseAction();
     //printMenu();
+    //std::cout << testStore << "\n";
+    //++(*time_);
+    //std::cout << testStore << "\n";
 
-//TEST
-    Store testStore(time_.get());
-    
-    std::cout << testStore << "\n";
-
-    ++(*time_);
-    std::cout << testStore << "\n";
-//TEST
 }
 
 void Game::printIntenface(){
-    std::cout << std::setw (101) << std::setfill('#') << "\n\n";
+    std::cout << std::setw (98) << std::setfill('#') << "\n\n";
     std::cout << std::setfill(' ') << std::setw (15) << "YOUR MONEY: " << std::setw (8) << std::setfill('0') << curentlyMoney_;
     std::cout << std::setfill(' ') << std::setw (30) << "YOUR GOAL: " << std::setw (8) << std::setfill('0') << gameGoal_;
     std::cout << std::setfill(' ') << std::setw (30) << "DAYS LEFT: " << gameDays_ << "\n\n";
-    std::cout << std::setw (100) << std::setfill('#') << "\n";
+    std::cout << std::setw (97) << std::setfill('#') << "\n";
 }
 
 void Game::printMenu(){
@@ -53,3 +49,33 @@ bool Game::loseCondition() const{
     return ((curentlyMoney_ < gameGoal_ && time_->getElapseTime() >= static_cast<int>(gameDays_)) || (curentlyMoney_ <= 0));
 }
 
+bool Game::chooseAction(){
+    bool rightChoose = true;
+    std::cout << "YOUR CHOOSE: ";
+    std::cin >> optionMenu_;
+    switch (optionMenu_)
+    {
+        case 1 : {
+            std::cout << testStore << "\n";
+        } break;
+        case 2 : {
+            //testStore.buy();
+        } break;
+        case 3 : {
+            //testStore.sell();
+        } break;
+        case 4 : {
+            //showMap();
+        } break;
+        case 5 : {
+            //travel();
+        } break;
+        case 6 : {
+            //exit();
+        } break;
+        default : {
+            rightChoose = false;
+        } break;
+    }
+    return rightChoose;
+}
