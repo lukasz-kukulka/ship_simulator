@@ -1,12 +1,11 @@
 #include "Game.hpp"
 #include "Ship.hpp"
+#include "Cargo.hpp"
 #include <iomanip> 
 
 Game::Game(int money, 
            int days, 
-           int goal) : curentlyMoney_(money), gameDays_(days), gameGoal_(goal){
-    time_ = std::make_shared<Time>();
-
+           int goal) : curentlyMoney_(money), gameDays_(days), gameGoal_(goal), time_(std::make_shared<Time>()){
 }
 
 void Game::startGame(){
@@ -16,13 +15,10 @@ void Game::startGame(){
 
 //TEST
     Store testStore(time_.get());
+    
     std::cout << testStore << "\n";
-    testStore.nextDay();
-    std::cout << testStore << "\n";
-        testStore.nextDay();
-    std::cout << testStore << "\n";
-    testStore.~Obserwer();
-        testStore.nextDay();
+
+    ++(*time_);
     std::cout << testStore << "\n";
 //TEST
 }
@@ -30,7 +26,7 @@ void Game::startGame(){
 void Game::printIntenface(){
     std::cout << std::setw (101) << std::setfill('#') << "\n\n";
     std::cout << std::setfill(' ') << std::setw (15) << "YOUR MONEY: " << std::setw (8) << std::setfill('0') << curentlyMoney_;
-    std::cout << std::setfill(' ') << std::setw (30) << "YOUR GOAL: " << gameGoal_;
+    std::cout << std::setfill(' ') << std::setw (30) << "YOUR GOAL: " << std::setw (8) << std::setfill('0') << gameGoal_;
     std::cout << std::setfill(' ') << std::setw (30) << "DAYS LEFT: " << gameDays_ << "\n\n";
     std::cout << std::setw (100) << std::setfill('#') << "\n";
 }

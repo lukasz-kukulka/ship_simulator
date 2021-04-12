@@ -8,6 +8,7 @@ class Cargo : public Obserwer
 public:
 
     Cargo(std::string, std::size_t, std::size_t);
+    ~Cargo() = default;
     virtual Cargo& operator+=(const size_t) = 0;
     virtual Cargo& operator-=(const size_t) = 0;
     virtual bool operator==(const Cargo&) const = 0;
@@ -18,6 +19,7 @@ public:
     virtual std::size_t getBestPrice() const = 0;
     virtual std::string getUniqueStat() const = 0; 
     virtual void changeAmount(int8_t, int8_t) = 0;
+    void nextDay() override { ; }
 
 protected:
     

@@ -23,8 +23,7 @@ public:
     std::size_t getAmount() const override { return amount_; }
     std::size_t getBestPrice() const override{ return bestPrice_; }
     std::string getUniqueStat() const override;
-    void nextDay() override;
-    void changeAmount(int8_t, int8_t) override ;
+    void changeAmount(int8_t, int8_t) override;
 
     uint8_t countRarity(uint8_t);
 

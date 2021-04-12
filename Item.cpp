@@ -56,10 +56,6 @@ void Item::changeAmount(int8_t valueOne, int8_t valueTwo) {
     }
 }
 
-void Item::nextDay(){
-    
-}
-
 std::size_t Item::getPrice() const{
     return price_ * static_cast<size_t>(rarity_);
 }

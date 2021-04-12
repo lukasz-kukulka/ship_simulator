@@ -2,7 +2,7 @@
 
 Fruit::Fruit(std::string name, 
              size_t amount, 
-             size_t bestPrice) : Cargo(name, amount, bestPrice) {
+             size_t bestPrice) : Cargo(name, amount, bestPrice){
 }
 
 Fruit& Fruit::operator--(){
@@ -39,7 +39,7 @@ std::size_t Fruit::getPrice() const {
 }
 
 void Fruit::nextDay(){
-    rottenTime_ --;
+    rottenTime_--;
 }
 
 std::string Fruit::getUniqueStat() const {

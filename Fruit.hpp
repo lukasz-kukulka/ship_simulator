@@ -2,13 +2,18 @@
 #include <iostream>
 #include "Cargo.hpp"
 #include <string>
+#include "Obserwer.hpp"
+#include "Time.hpp"
 
 class Fruit : public Cargo {
 
 public:
     Fruit (std::string, size_t, size_t);
-    ~Fruit() override {};
+    //~Fruit() override;
     Fruit& operator--();
+
+    //override from Obserwer class
+    void nextDay() override;
 
     //override from Cargo class
     Cargo& operator+=(const size_t) override;
@@ -19,12 +24,11 @@ public:
     std::size_t getAmount() const override { return amount_; }
     std::size_t getBestPrice() const override{ return bestPrice_; }
     std::size_t getRottenTime() const { return rottenTime_; }
-    void nextDay() override;
+    
     std::string getUniqueStat() const override;
 
     void changeAmount(int8_t, int8_t) override;
 protected:
     std::size_t rottenTime_ { 10 };
-
 
 };

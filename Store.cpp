@@ -8,12 +8,12 @@
 #include <iomanip>
 
 Store::Store(Time* time) : time_(time) {
-    time_->addObserwer(this);
+    this->time_->addObserwer(this);
     generateAllCargo();
 }
 
 Store::~Store(){
-    time_->deleteObserwer(this);
+    this->time_->deleteObserwer(this);
 }
 
 Store::Response Store::buy(Cargo* cargo, size_t amount, Player* player){
@@ -74,8 +74,10 @@ size_t Store::randomGenerate(int min, int max){
 }
 
 void Store::nextDay(){
+    
     for (auto& cargo : cargo_) {
         cargo->changeAmount(static_cast<int8_t>(randomGenerate(0, 50)), static_cast<int8_t>(randomGenerate(0, 50)));
+        cargo->nextDay();
     }
 }
 

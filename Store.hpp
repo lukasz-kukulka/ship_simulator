@@ -9,7 +9,11 @@
 class Store : public Obserwer{
 public:
     Store(Time*);
+
+    //override Observer
     ~Store() override;
+    void nextDay() override;
+    
     enum class Response : uint8_t {
         done, 
         lack_of_money, 
@@ -19,11 +23,7 @@ public:
 
     Response buy(Cargo*, size_t, Player*);
     Response sell(Cargo*, size_t, Player*);
-
-    //override Observer
-    void nextDay() override;
     friend std::ostream& operator<<(std::ostream&, const Store&);
-
 
 private:
 
