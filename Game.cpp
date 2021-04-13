@@ -2,6 +2,9 @@
 #include "Ship.hpp"
 #include "Cargo.hpp"
 #include <iomanip> 
+#include <utility>
+
+constexpr std::pair<uint8_t, uint8_t> map_size (20, 20);
 
 Game::Game(int money, 
            int days, 
@@ -9,9 +12,8 @@ Game::Game(int money,
 }
 
 void Game::startGame(){
-    
     printIntenface();
-    //chooseAction();
+    chooseAction();
     //printMenu();
     //std::cout << testStore << "\n";
     //++(*time_);
@@ -20,11 +22,13 @@ void Game::startGame(){
 }
 
 void Game::printIntenface(){
-    std::cout << std::setw (98) << std::setfill('#') << "\n\n";
-    std::cout << std::setfill(' ') << std::setw (15) << "YOUR MONEY: " << std::setw (8) << std::setfill('0') << curentlyMoney_;
+    std::cout << std::setw (99) << std::setfill('#') << "\n";
+    std::cout << "#" << std::setfill(' ') << std::setw (97) << "#" << "\n";
+    std::cout << "#" << std::setfill(' ') << std::setw (15) << "YOUR MONEY: " << std::setw (8) << std::setfill('0') << curentlyMoney_;
     std::cout << std::setfill(' ') << std::setw (30) << "YOUR GOAL: " << std::setw (8) << std::setfill('0') << gameGoal_;
-    std::cout << std::setfill(' ') << std::setw (30) << "DAYS LEFT: " << gameDays_ << "\n\n";
-    std::cout << std::setw (97) << std::setfill('#') << "\n";
+    std::cout << std::setfill(' ') << std::setw (30) << "DAYS LEFT: " << gameDays_ << std::setw (4) << "#" "\n";
+    std::cout << "#" << std::setfill(' ') << std::setw (97) << "#" << "\n";
+    std::cout << std::setw (99) << std::setfill('#') << "\n";
 }
 
 void Game::printMenu(){
@@ -42,6 +46,10 @@ void Game::printMenu(){
     std::cout << "#" << std::setfill('-')  << std::setw (31) << "#\n\n";
 }
 
+void Game::printMap(){
+
+}
+
 bool Game::winCondition() const{
     return curentlyMoney_ > gameGoal_;
 }
@@ -53,24 +61,25 @@ bool Game::chooseAction(){
     bool rightChoose = true;
     std::cout << "YOUR CHOOSE: ";
     std::cin >> optionMenu_;
-    switch (optionMenu_)
+    menuOption_ = static_cast<Game::MenuOption>(optionMenu_);
+    switch (menuOption_)
     {
-        case 1 : {
+        case MenuOption::check_cargo : {
             std::cout << testStore << "\n";
         } break;
-        case 2 : {
+        case MenuOption::buy : {
             //testStore.buy();
         } break;
-        case 3 : {
+        case MenuOption::sell : {
             //testStore.sell();
         } break;
-        case 4 : {
+        case MenuOption::show_map : {
             //showMap();
         } break;
-        case 5 : {
+        case MenuOption::travel : {
             //travel();
         } break;
-        case 6 : {
+        case MenuOption::exit : {
             //exit();
         } break;
         default : {
