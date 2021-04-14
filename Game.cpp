@@ -3,12 +3,16 @@
 #include "Cargo.hpp"
 #include <iomanip> 
 #include <utility>
+#include <algorithm>
 
 constexpr std::pair<uint8_t, uint8_t> map_size (20, 20);
 
 Game::Game(int money, 
            int days, 
-           int goal) : curentlyMoney_(money), gameDays_(days), gameGoal_(goal), time_(std::make_shared<Time>()), testStore(time_.get()){
+           int goal) : curentlyMoney_(money), gameDays_(days), gameGoal_(goal), 
+                    time_(std::make_shared<Time>()), 
+                    testStore(time_.get()),
+                    map_(std::make_shared<Map>()) {
 }
 
 void Game::startGame(){
@@ -47,7 +51,16 @@ void Game::printMenu(){
 }
 
 void Game::printMap(){
+    // for(auto& printEle : positionMap_[0]){
+        //std::cout << positionMap_[0][0] << "\n";
+    // }
+}
 
+void Game::mapGenerate(){
+    for (uint16_t i = 0; i < map_size.first + map_size.second; i++){
+        // if()
+        // positions_.push_back()
+    }
 }
 
 bool Game::winCondition() const{
