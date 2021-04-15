@@ -1,23 +1,28 @@
 #include "Game.hpp"
 #include "Ship.hpp"
 #include "Cargo.hpp"
+
 #include <iomanip> 
-#include <utility>
 #include <algorithm>
 
 constexpr std::pair<uint8_t, uint8_t> map_size (20, 20);
 
 Game::Game(int money, 
            int days, 
-           int goal) : curentlyMoney_(money), gameDays_(days), gameGoal_(goal), 
-                    time_(std::make_shared<Time>()), 
-                    testStore(time_.get()),
-                    map_(std::make_shared<Map>()) {
+           int goal) : 
+                curentlyMoney_(money), 
+                gameDays_(days), 
+                gameGoal_(goal), 
+                time_(std::make_shared<Time>()), 
+                testStore(time_.get()),
+                map_(std::make_shared<Map>(map_size)) {
+    mapGenerate();
 }
 
 void Game::startGame(){
-    printIntenface();
-    chooseAction();
+    //printIntenface();
+    //chooseAction();
+    printMap();
     //printMenu();
     //std::cout << testStore << "\n";
     //++(*time_);
@@ -51,16 +56,41 @@ void Game::printMenu(){
 }
 
 void Game::printMap(){
-    // for(auto& printEle : positionMap_[0]){
-        //std::cout << positionMap_[0][0] << "\n";
-    // }
+    for (const auto& mapPosition : positions_){
+        std::cout << mapPosition.second ;
+        if (mapPosition.first.first >= 19){
+            std::cout <<"\n";
+        }
+    }
+
 }
 
 void Game::mapGenerate(){
-    for (uint16_t i = 0; i < map_size.first + map_size.second; i++){
-        // if()
-        // positions_.push_back()
+    uint8_t tempPosX = 0, tempPosY = 0;
+    std::string tempString;
+    for (uint8_t i = 0; i < (map_size.second); i++){
+        if (std::to_string(i).size() <= 1){
+            tempString = "[ 0" + std::to_string(i + 1) + " ]";
+        } else {
+            tempString = "[ " + std::to_string(i+ 1) + " ]";
+        }
+        std::cout << tempString;
     }
+    std::cout << "\n";
+    while (tempPosX < map_size.first && tempPosY < map_size.second){
+        if(map_->getIsland(Coordinates(tempPosX, tempPosY)) == nullptr){
+            positions_.push_back(std::make_pair(std::make_pair(tempPosX, tempPosY), "[____]"));
+        } else {
+            positions_.push_back(std::make_pair(std::make_pair(tempPosX, tempPosY), "[_()_]"));
+        }
+        tempPosX ++;
+        if (tempPosX >= 20){
+            tempPosY++;
+            tempPosX = 0;
+        }
+    }
+
+    
 }
 
 bool Game::winCondition() const{

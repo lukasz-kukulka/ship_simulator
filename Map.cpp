@@ -1,12 +1,13 @@
 #include "Map.hpp"
+
 #include <algorithm>
 #include <random>
 #include <iostream>
 
-Map::Map(){
+Map::Map(std::pair<uint8_t, uint8_t>mapSize ) : 
+         mapSize_(mapSize.first - 1, mapSize.second -1) {
 
-initializeIslands(10, checkDuplicateCoordination(island_));
-
+initializeIslands(11, checkDuplicateCoordination(island_));
 }
 
 std::size_t Map::randomGenerate(std::size_t min, std::size_t max){
@@ -22,7 +23,7 @@ void Map::initializeIslands(const std::size_t numberOfIslands, bool ifDuplicate)
         if (ifDuplicate == true){
             i--;
         } else {
-        island_.push_back(Island(randomGenerate(0, 100), randomGenerate(0, 100)));
+        island_.push_back(Island(randomGenerate(0, mapSize_.first), randomGenerate(0, mapSize_.second)));
         }
     }
 }
@@ -42,7 +43,7 @@ bool Map::checkDuplicateCoordination(std::vector<Island>& island){
 
 Island* Map::getIsland(const Coordinates& coordinate){
     auto iterator_island = std::find_if(island_.begin(), island_.end(), [&](Island elements){return elements.getCoorditates() == coordinate; });
-    return &*iterator_island;
+    return iterator_island != island_.end() ? &(*iterator_island) : nullptr;
 }
 
 
