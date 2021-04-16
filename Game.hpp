@@ -29,6 +29,8 @@ private:
     void printMenu();
     void printMap();
     void mapGenerate();
+    void printRowInMap(uint8_t, std::string);
+    void printIndexNumbers();
     bool winCondition() const;
     bool loseCondition() const;
     bool chooseAction();

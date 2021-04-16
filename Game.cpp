@@ -56,32 +56,46 @@ void Game::printMenu(){
 }
 
 void Game::printMap(){
+    printIndexNumbers();
     for (const auto& mapPosition : positions_){
+        if (mapPosition.first.first == 0){
+            std::cout << "    |";
+            //printIndexNumbers();
+            printRowInMap(map_size.first, "|---|");
+            std::cout << "  " << std::setw (2) << std::setfill('0') << std::to_string(mapPosition.first.second + 1) << "|";
+        }
         std::cout << mapPosition.second ;
         if (mapPosition.first.first >= 19){
             std::cout <<"\n";
+            std::cout << "    |";
+            printRowInMap(map_size.first, "|---|");
         }
     }
+}
 
+void Game::printRowInMap(uint8_t repeatTime, std::string whatRepeat){
+    for (uint8_t i = 0; i < repeatTime; i++){
+        std::cout << whatRepeat;
+    }
+    std::cout << "\n";
+}
+
+void Game::printIndexNumbers(){
+    std::cout << "    |";
+    for (uint8_t i = 0; i < (map_size.second); i++){
+        std::cout << " " << std::setw (2) << std::setfill('0') << std::to_string(i + 1) << "  ";
+    }
+    std::cout <<"\n";
 }
 
 void Game::mapGenerate(){
     uint8_t tempPosX = 0, tempPosY = 0;
-    std::string tempString;
-    for (uint8_t i = 0; i < (map_size.second); i++){
-        if (std::to_string(i).size() <= 1){
-            tempString = "[ 0" + std::to_string(i + 1) + " ]";
-        } else {
-            tempString = "[ " + std::to_string(i+ 1) + " ]";
-        }
-        std::cout << tempString;
-    }
     std::cout << "\n";
     while (tempPosX < map_size.first && tempPosY < map_size.second){
         if(map_->getIsland(Coordinates(tempPosX, tempPosY)) == nullptr){
-            positions_.push_back(std::make_pair(std::make_pair(tempPosX, tempPosY), "[____]"));
+            positions_.push_back(std::make_pair(std::make_pair(tempPosX, tempPosY), "|   |"));
         } else {
-            positions_.push_back(std::make_pair(std::make_pair(tempPosX, tempPosY), "[_()_]"));
+            positions_.push_back(std::make_pair(std::make_pair(tempPosX, tempPosY), "| O |"));
         }
         tempPosX ++;
         if (tempPosX >= 20){
@@ -89,8 +103,6 @@ void Game::mapGenerate(){
             tempPosX = 0;
         }
     }
-
-    
 }
 
 bool Game::winCondition() const{
