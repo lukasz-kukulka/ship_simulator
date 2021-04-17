@@ -5,7 +5,7 @@
 #include <iomanip> 
 #include <algorithm>
 
-constexpr std::pair<uint8_t, uint8_t> map_size (20, 20);
+constexpr std::pair<uint8_t, uint8_t> map_size (10, 10);
 
 Game::Game(int money, 
            int days, 
@@ -14,15 +14,16 @@ Game::Game(int money,
                 gameDays_(days), 
                 gameGoal_(goal), 
                 time_(std::make_shared<Time>()), 
-                testStore(time_.get()),
-                map_(std::make_shared<Map>(map_size)) {
+                testStore_(std::make_shared<Store>(time_.get())),
+                map_(std::make_shared<Map>(map_size)),
+                player_(std::make_shared<Player>()) {
     mapGenerate();
 }
 
 void Game::startGame(){
     //printIntenface();
     //chooseAction();
-    printMap();
+    //printMap();
     //printMenu();
     //std::cout << testStore << "\n";
     //++(*time_);
@@ -60,14 +61,12 @@ void Game::printMap(){
     for (const auto& mapPosition : positions_){
         if (mapPosition.first.first == 0){
             std::cout << "    |";
-            //printIndexNumbers();
             printRowInMap(map_size.first, "|---|");
             std::cout << "  " << std::setw (2) << std::setfill('0') << std::to_string(mapPosition.first.second + 1) << "|";
         }
-        std::cout << mapPosition.second ;
-        if (mapPosition.first.first >= 19){
-            std::cout <<"\n";
-            std::cout << "    |";
+        std::cout << mapPosition.second;
+        if (mapPosition.first.first >= map_size.first - 1){
+            std::cout <<"\n    |";
             printRowInMap(map_size.first, "|---|");
         }
     }
@@ -82,7 +81,7 @@ void Game::printRowInMap(uint8_t repeatTime, std::string whatRepeat){
 
 void Game::printIndexNumbers(){
     std::cout << "    |";
-    for (uint8_t i = 0; i < (map_size.second); i++){
+    for (uint8_t i = 0; i < (map_size.first); i++){
         std::cout << " " << std::setw (2) << std::setfill('0') << std::to_string(i + 1) << "  ";
     }
     std::cout <<"\n";
@@ -98,7 +97,7 @@ void Game::mapGenerate(){
             positions_.push_back(std::make_pair(std::make_pair(tempPosX, tempPosY), "| O |"));
         }
         tempPosX ++;
-        if (tempPosX >= 20){
+        if (tempPosX >= map_size.first){
             tempPosY++;
             tempPosX = 0;
         }
@@ -120,7 +119,7 @@ bool Game::chooseAction(){
     switch (menuOption_)
     {
         case MenuOption::check_cargo : {
-            std::cout << testStore << "\n";
+            std::cout << testStore_ << "\n";
         } break;
         case MenuOption::buy : {
             //testStore.buy();
@@ -129,7 +128,7 @@ bool Game::chooseAction(){
             //testStore.sell();
         } break;
         case MenuOption::show_map : {
-            //showMap();
+            printMap();
         } break;
         case MenuOption::travel : {
             //travel();
