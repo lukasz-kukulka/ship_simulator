@@ -3,6 +3,7 @@
 #include "Store.hpp"
 #include "Map.hpp"
 #include "Player.hpp"
+#include "Cargo.hpp"
 
 #include <iostream>
 #include <memory>
@@ -25,7 +26,7 @@ public:
         exit
     };
 private:
-
+    void transactionCargo(uint8_t, uint8_t);
     void printIntenface();
     void printMenu();
     void printMap();
@@ -40,9 +41,10 @@ private:
     int gameGoal_;
     int optionMenu_ { 0 };
     std::shared_ptr<Time>time_;
-    std::shared_ptr<Store>testStore_;
+    std::shared_ptr<Store>store_;
     std::shared_ptr<Map>map_;
     std::shared_ptr<Player>player_;
+    Cargo* cargo_;
     MenuOption menuOption_;
     std::vector<std::pair<std::pair<uint8_t, uint8_t>, std::string>> positions_;
 };

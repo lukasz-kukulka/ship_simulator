@@ -36,6 +36,7 @@ private:
     bool checkMoney(size_t, size_t, size_t);
     bool checkCargo(size_t, size_t);
     bool checkSpace(size_t, size_t);
+    bool ifCargoExist(Cargo*);
     size_t randomGenerate(int, int);
     void generateItemStatus(Cargo*, size_t, Player*);
     std::vector<std::shared_ptr<Cargo>>cargo_;

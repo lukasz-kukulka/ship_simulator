@@ -1,11 +1,13 @@
 #include "Store.hpp"
-#include <random>
-#include <iostream>
 #include "Alcohol.hpp"
 #include "Item.hpp"
 #include "Fruit.hpp"
 #include "DryFruit.hpp"
+
+#include <random>
+#include <iostream>
 #include <iomanip>
+#include <algorithm>
 
 Store::Store(Time* time) : time_(time) {
     this->time_->addObserwer(this);
@@ -17,11 +19,14 @@ Store::~Store(){
 }
 
 Store::Response Store::buy(Cargo* cargo, size_t amount, Player* player){
+    tradeStatus_ = Response::done;
     generateItemStatus(cargo, amount, player);
+    std::cout << messageError_;
     return tradeStatus_;
 }
 
 Store::Response Store::sell(Cargo* cargo, size_t amount, Player* player){
+    tradeStatus_ = Response::done;
     generateItemStatus(cargo, amount, player);
     return tradeStatus_;
 }
@@ -32,6 +37,15 @@ void Store::generateItemStatus(Cargo* cargo, size_t amount, Player* player){
     checkCargo(cargo->getAmount(), amount);
     checkSpace(amount, player->getAvailableSpace());
     
+}
+
+bool Store::ifCargoExist(Cargo* cargo){
+    auto result = std::find_if(begin(cargo_), end(cargo_), [&] (auto element) { return element.get() == cargo; });
+    if (result == cargo_.end()){
+        return false;
+    } else {
+        return true;
+    }
 }
 
 void Store::printMessage(){
