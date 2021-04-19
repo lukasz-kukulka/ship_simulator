@@ -3,6 +3,8 @@
 
 #include <iomanip> 
 #include <algorithm>
+#include <cctype>
+#include <cstdlib>
 
 constexpr std::pair<uint8_t, uint8_t> map_size (10, 10);
 
@@ -10,7 +12,7 @@ Game::Game(int money,
            int days, 
            int goal) : 
                 curentlyMoney_(money), 
-                gameDays_(days), 
+                gameDays_(days),
                 gameGoal_(goal), 
                 time_(std::make_shared<Time>()), 
                 store_(std::make_shared<Store>(time_.get())),
@@ -20,6 +22,7 @@ Game::Game(int money,
 }
 
 void Game::startGame(){
+    buy();
     //printIntenface();
     //chooseAction();
     //printMap();
@@ -35,6 +38,18 @@ void Game::transactionCargo(uint8_t typeTransaction, uint8_t amout){
         store_->buy(cargo_, amout, player_.get());
     } else if (typeTransaction == 2){
         store_->sell(cargo_, amout, player_.get());
+    }
+}
+
+void Game::buy(){
+    std::string chose;
+    std::cout << "Please put number cargo what you wanna buy: ";
+    std::cin >> chose;
+    auto results = std::find_if(begin(chose), end(chose), [&](auto element){ return !std::isdigit(static_cast<unsigned char>(element)); });
+    if (results == chose.end() || static_cast<uint16_t>(std::stoi(chose)) > store_->getNoOffCargo()) {
+        std::cout << "Wrong value, please insert correct number";
+    } else {
+        
     }
 }
 

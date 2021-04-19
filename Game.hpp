@@ -33,6 +33,7 @@ private:
     void mapGenerate();
     void printRowInMap(uint8_t, std::string);
     void printIndexNumbers();
+    void buy();
     bool winCondition() const;
     bool loseCondition() const;
     bool chooseAction();

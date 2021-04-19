@@ -24,6 +24,7 @@ public:
     Response buy(Cargo*, size_t, Player*);
     Response sell(Cargo*, size_t, Player*);
     friend std::ostream& operator<<(std::ostream&, const Store&);
+    uint16_t getNoOffCargo() { return static_cast<uint16_t>(cargo_.size()); }
 
 private:
 
