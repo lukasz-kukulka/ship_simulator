@@ -24,7 +24,7 @@ Game::Game(int money,
 void Game::startGame(){
     buy();
     //printIntenface();
-    //chooseAction();
+    choiceAction();
     //printMap();
     //printMenu();
     //std::cout << testStore << "\n";
@@ -34,7 +34,7 @@ void Game::startGame(){
 }
 
 void Game::transactionCargo(uint8_t typeTransaction, uint8_t amout){
-    if (typeTransaction == 1 && amout == 1){
+    if (typeTransaction == 1 && amout == 1){ //amout 1 only temporary
         store_->buy(cargo_, amout, player_.get());
     } else if (typeTransaction == 2){
         store_->sell(cargo_, amout, player_.get());
@@ -42,14 +42,15 @@ void Game::transactionCargo(uint8_t typeTransaction, uint8_t amout){
 }
 
 void Game::buy(){
-    std::string chose;
-    std::cout << "Please put number cargo what you wanna buy: ";
-    std::cin >> chose;
-    auto results = std::find_if(begin(chose), end(chose), [&](auto element){ return !std::isdigit(static_cast<unsigned char>(element)); });
-    if (results == chose.end() || static_cast<uint16_t>(std::stoi(chose)) > store_->getNoOffCargo()) {
-        std::cout << "Wrong value, please insert correct number";
-    } else {
-        
+    std::string choiceCargoNumber { 0 };
+    uint16_t choiceCargoQuantity { 0 };
+    while(store_->checkCargoCondition(choiceCargoNumber) == false){
+        std::cout << "Cargo number : \n" ;
+        std::cin >> choiceCargoNumber;
+    }
+    while(store_->checkCargoRange(choiceCargoQuantity) == false){
+        std::cout << "Cargo quantity : \n";
+        std::cin >> choiceCargoQuantity;
     }
 }
 
@@ -133,7 +134,7 @@ bool Game::loseCondition() const{
     return ((curentlyMoney_ < gameGoal_ && time_->getElapseTime() >= static_cast<int>(gameDays_)) || (curentlyMoney_ <= 0));
 }
 
-bool Game::chooseAction(){
+bool Game::choiceAction(){
     bool rightChoose = true;
     std::cout << "YOUR CHOOSE: ";
     std::cin >> optionMenu_;
@@ -144,8 +145,7 @@ bool Game::chooseAction(){
             std::cout << store_ << "\n";
         } break;
         case MenuOption::buy : {
-            //std::cin >> 
-            //testStore.buy();
+            buy();
         } break;
         case MenuOption::sell : {
             //testStore.sell();

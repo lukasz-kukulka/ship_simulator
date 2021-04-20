@@ -36,7 +36,7 @@ private:
     void buy();
     bool winCondition() const;
     bool loseCondition() const;
-    bool chooseAction();
+    bool choiceAction();
     int curentlyMoney_;
     int gameDays_;
     int gameGoal_;
