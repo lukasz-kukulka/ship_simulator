@@ -47,9 +47,13 @@ std::string Fruit::getUniqueStat() const {
 }
 
 void Fruit::changeAmount(int8_t valueOne, int8_t valueTwo) {
-    if (static_cast<int8_t>(amount_) + (valueOne - valueTwo) <= 0){
+    if (static_cast<int8_t>(amount_) + (valueOne - valueTwo) <= 0) {
         amount_ = 0;
     } else {
         amount_ += (valueOne - valueTwo);
     }
+}
+
+void Fruit::addSubstractAmout(int8_t value) {
+    amount_ += (value);
 }

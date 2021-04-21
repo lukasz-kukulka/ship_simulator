@@ -33,3 +33,7 @@ std::string DryFruit::getUniqueStat() const {
 void DryFruit::nextDay(){
     countRottenTime();
 }
+
+void DryFruit::addSubstractAmout(int8_t value) {
+    amount_ += (value);
+}

@@ -20,8 +20,8 @@ Store::~Store(){
 }
 
 bool Store::checkCargoCondition(std::string index){
-    auto results = std::find_if(begin(index), end(index), [&](auto element){ return !std::isdigit(static_cast<unsigned char>(element)); });
-    if (results == index.end() || static_cast<uint16_t>(std::stoi(index)) > getNoOffCargo() || std::stoi(index) < 1) {
+    auto results = std::find_if(begin(index), end(index), [&](auto element, numberCargoToCheck++ ){ return !std::isdigit(static_cast<unsigned char>(element)); });
+    if (results == index.end() || static_cast<uint16_t>(std::stoi(index)) > getNoOffCargo() || std::stoi(index) < 1)) {
         system( "cls" );
         std::cout << "Wrong value, please insert correct value. Betwen 1 and " << getNoOffCargo() << " \n";
         return false;
@@ -34,26 +34,16 @@ bool Store::checkCargoRange(uint16_t index){
     if (index <= getNoOffCargo()){
         return true;
     } else {
+        system( "cls" );
+        std::cout << "Wrong value, please insert correct value. Betwen 1 and " << cargo_[numberCargoToCheck]->getAmount() << " \n";
         return false;
     }
 }
 
-
-
-
 Store::Response Store::buy(Cargo* cargo, size_t amount, Player* player){
-    while(true){
-    if (ifCargoExist(cargo) == false){
-        std::cout << "Cargo don't exist\n" << "Please try put number of cargo again, value betwen 1 and " << getNoOffCargo() << " \n";
-    }
-    }
-    
-
     tradeStatus_ = Response::done;
     generateItemStatus(cargo, amount, player);
     std::cout << messageError_;
-
-
     return tradeStatus_;
 }
 

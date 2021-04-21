@@ -11,6 +11,8 @@ public:
     std::size_t getRottenTime() const;
     std::string getUniqueStat() const override;
     void nextDay() override;
+    void addSubstractAmout(int8_t) override;
+    
 private:
     void countRottenTime();
     uint16_t dryFruitRottenTime_ { 0 };

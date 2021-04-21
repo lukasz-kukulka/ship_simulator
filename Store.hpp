@@ -44,6 +44,6 @@ private:
     std::vector<std::shared_ptr<Cargo>>cargo_;
     Response tradeStatus_;
     std::string messageError_ { "" };
-
+    uint16_t numberCargoToCheck { 0 };
     Time* time_;
 };

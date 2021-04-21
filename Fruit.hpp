@@ -23,11 +23,11 @@ public:
     std::string getName() const override { return name_; }
     std::size_t getAmount() const override { return amount_; }
     std::size_t getBestPrice() const override{ return bestPrice_; }
-    std::size_t getRottenTime() const { return rottenTime_; }
-    
+    void addSubstractAmout(int8_t) override;
     std::string getUniqueStat() const override;
-
     void changeAmount(int8_t, int8_t) override;
+
+    std::size_t getRottenTime() const { return rottenTime_; }
 protected:
     std::size_t rottenTime_ { 10 };
 

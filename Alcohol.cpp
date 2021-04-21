@@ -42,3 +42,7 @@ void Alcohol::changeAmount(int8_t valueOne, int8_t valueTwo) {
         amount_ += (valueOne - valueTwo);
     }
 }
+
+void Alcohol::addSubstractAmout(int8_t value) {
+    amount_ += (value);
+}

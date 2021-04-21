@@ -52,6 +52,8 @@ void Game::buy(){
         std::cout << "Cargo quantity : \n";
         std::cin >> choiceCargoQuantity;
     }
+
+    
 }
 
 void Game::printIntenface(){

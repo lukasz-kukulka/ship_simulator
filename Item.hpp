@@ -24,6 +24,7 @@ public:
     std::size_t getBestPrice() const override{ return bestPrice_; }
     std::string getUniqueStat() const override;
     void changeAmount(int8_t, int8_t) override;
+    void addSubstractAmout(int8_t) override;
 
     uint8_t countRarity(uint8_t);
 

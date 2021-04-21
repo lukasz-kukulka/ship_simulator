@@ -18,6 +18,7 @@ public:
     std::size_t getPurity() const { return purity_; }
     std::string getUniqueStat() const override;
     void changeAmount(int8_t, int8_t) override;
+    void addSubstractAmout(int8_t) override;
 
 private:
     std::size_t purity_ { 40 };

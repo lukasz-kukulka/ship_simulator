@@ -19,6 +19,7 @@ public:
     virtual std::size_t getBestPrice() const = 0;
     virtual std::string getUniqueStat() const = 0; 
     virtual void changeAmount(int8_t, int8_t) = 0;
+    virtual void addSubstractAmout(int8_t) = 0;
     void nextDay() override { ; }
 
 protected:

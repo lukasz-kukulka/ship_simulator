@@ -59,3 +59,7 @@ void Item::changeAmount(int8_t valueOne, int8_t valueTwo) {
 std::size_t Item::getPrice() const{
     return price_ * static_cast<size_t>(rarity_);
 }
+
+void Item::addSubstractAmout(int8_t value) {
+    amount_ += (value);
+}
