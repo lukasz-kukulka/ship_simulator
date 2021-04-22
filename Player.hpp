@@ -24,7 +24,7 @@ int money_;
 size_t availableSpace_ { 100 };
 void checkAvailableSpace();
 std::vector<std::shared_ptr<Cargo>>cargo_;
-void addCargoToShip(std::shared_ptr<Cargo>, size_t);
+void addCargoToShip(std::shared_ptr<Cargo>, int8_t);
 
 };
 

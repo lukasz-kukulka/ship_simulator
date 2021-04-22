@@ -23,11 +23,15 @@ void Player::payCrew(int payCrew){
 //     return ;
 // }
 
-void Player::addCargoToShip(std::shared_ptr<Cargo>cargo, size_t value){
+void Player::addCargoToShip(std::shared_ptr<Cargo>cargo, int8_t value){
     uint8_t iterator = 0;
-    auto result = std::find_if(cargo_.begin(), cargo_.end(), [&](auto element) { return element == cargo; });
+    auto result = std::find_if(cargo_.begin(), cargo_.end(), [&](auto element) { 
+        iterator++;
+        return element == cargo; 
+        });
     if (result != cargo_.end()){
-        iterator ++;
-        value++;
+        cargo_[iterator]->addSubstractAmout(value);
+    } else {
+        //cargo_.push_back(cargo.get());
     }
 }

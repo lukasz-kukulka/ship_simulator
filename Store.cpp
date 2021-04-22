@@ -20,8 +20,11 @@ Store::~Store(){
 }
 
 bool Store::checkCargoCondition(std::string index){
-    auto results = std::find_if(begin(index), end(index), [&](auto element, numberCargoToCheck++ ){ return !std::isdigit(static_cast<unsigned char>(element)); });
-    if (results == index.end() || static_cast<uint16_t>(std::stoi(index)) > getNoOffCargo() || std::stoi(index) < 1)) {
+    auto results = std::find_if(begin(index), end(index), [&](auto element){ 
+        numberCargoToCheck++;
+        return !std::isdigit(static_cast<unsigned char>(element)); 
+    });
+    if (results == index.end() || static_cast<uint16_t>(std::stoi(index)) > getNoOffCargo() || std::stoi(index) < 1) {
         system( "cls" );
         std::cout << "Wrong value, please insert correct value. Betwen 1 and " << getNoOffCargo() << " \n";
         return false;
