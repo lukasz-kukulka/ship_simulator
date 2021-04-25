@@ -2,20 +2,16 @@
 #include <algorithm>
 #include <iostream>
 
-Ship::Ship(int id, 
-           const std::string& name, 
+Ship::Ship(const std::string& name, 
            std::size_t speed, 
            int maxCrew, 
-           std::size_t capacity, 
-           Delegate* delegate, 
-           Time* time) : id_(id), name_(name), speed_(speed), maxCrew_(maxCrew), capacity_(capacity), delegate_(delegate), time_(time) {
+           std::size_t capacity,  
+           Time* time) : name_(name), speed_(speed), maxCrew_(maxCrew), capacity_(capacity), time_(time) {
                time_->addObserwer(this);
            }
-Ship::Ship(int id, 
-           std::size_t speed, 
-           int maxCrew, 
-           Delegate* delegate, 
-           Time* time) : Ship(id, "Empty", speed, maxCrew, 0, delegate, time) {}
+Ship::Ship(std::size_t speed, 
+           int maxCrew,  
+           Time* time) : Ship("Empty", speed, maxCrew, 0, time) {}
 
 Ship::~Ship(){
     time_->deleteObserwer(this);

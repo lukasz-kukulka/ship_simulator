@@ -1,5 +1,4 @@
 #include "Game.hpp"
-#include "Ship.hpp"
 
 #include <iomanip> 
 #include <algorithm>
@@ -17,14 +16,14 @@ Game::Game(int money,
                 time_(std::make_shared<Time>()), 
                 store_(std::make_shared<Store>(time_.get())),
                 map_(std::make_shared<Map>(map_size)),
-                player_(std::make_shared<Player>()) {
+                player_(std::make_shared<Player>(time_.get())){
     mapGenerate();
 }
 
 void Game::startGame(){
-    buy();
+    //buy();
     //printIntenface();
-    choiceAction();
+    //choiceAction();
     //printMap();
     //printMenu();
     //std::cout << testStore << "\n";
@@ -34,8 +33,8 @@ void Game::startGame(){
 }
 
 void Game::transactionCargo(uint8_t typeTransaction, uint8_t amout){
-    if (typeTransaction == 1 && amout == 1){ //amout 1 only temporary
-        store_->buy(cargo_, amout, player_.get());
+    if (typeTransaction == 1 && amout == 1 && store_->buy(cargo_, amout, player_.get()) == Store::Response::done){ //amout 1 only temporary
+        
     } else if (typeTransaction == 2){
         store_->sell(cargo_, amout, player_.get());
     }

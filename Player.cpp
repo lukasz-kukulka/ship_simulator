@@ -5,9 +5,14 @@
 #include "DryFruit.hpp"
 
 #include <algorithm>
+#include <cctype>
+
+Player::Player(Time* time) : 
+                ship_(std::make_shared<Ship>("Test_NAME", 30, 100, 50, time)){
+
+}
 
 void Player::checkAvailableSpace(){
-    //size_t test = Player::getCargo().getAmount();
     availableSpace_ = ship_.get()->getCapacity();
 }
 
@@ -23,15 +28,7 @@ void Player::payCrew(int payCrew){
 //     return ;
 // }
 
-void Player::addCargoToShip(std::shared_ptr<Cargo>cargo, int8_t value){
-    uint8_t iterator = 0;
-    auto result = std::find_if(cargo_.begin(), cargo_.end(), [&](auto element) { 
-        iterator++;
-        return element == cargo; 
-        });
-    if (result != cargo_.end()){
-        cargo_[iterator]->addSubstractAmout(value);
-    } else {
-        //cargo_.push_back(cargo.get());
-    }
-}
+
+// void Player::addCargoToShip(std::shared_ptr<Cargo>cargo, int8_t value){
+
+// }
