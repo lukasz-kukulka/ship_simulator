@@ -26,6 +26,7 @@ public:
     friend std::ostream& operator<<(std::ostream&, const Store&);
     bool checkCargoCondition(std::string);
     bool checkCargoRange(uint16_t);
+    Cargo* getCargo(uint16_t);
 
 private:
     uint16_t getNoOffCargo() { return static_cast<uint16_t>(cargo_.size()); }

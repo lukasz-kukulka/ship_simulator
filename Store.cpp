@@ -19,6 +19,10 @@ Store::~Store(){
     this->time_->deleteObserwer(this);
 }
 
+Cargo* Store::getCargo(uint16_t pos){
+    return cargo_[pos].get();
+}
+
 bool Store::checkCargoCondition(std::string index){
     auto results = std::find_if(begin(index), end(index), [&](auto element){ 
         numberCargoToCheck++;

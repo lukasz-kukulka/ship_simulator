@@ -32,14 +32,6 @@ void Game::startGame(){
 
 }
 
-void Game::transactionCargo(uint8_t typeTransaction, uint8_t amout){
-    if (typeTransaction == 1 && amout == 1 && store_->buy(cargo_, amout, player_.get()) == Store::Response::done){ //amout 1 only temporary
-        
-    } else if (typeTransaction == 2){
-        store_->sell(cargo_, amout, player_.get());
-    }
-}
-
 void Game::buy(){
     std::string choiceCargoNumber { 0 };
     uint16_t choiceCargoQuantity { 0 };
@@ -51,6 +43,7 @@ void Game::buy(){
         std::cout << "Cargo quantity : \n";
         std::cin >> choiceCargoQuantity;
     }
+    store_->buy(store_->getCargo(static_cast<uint16_t>(std::stoi(choiceCargoNumber))), choiceCargoQuantity, player_.get());
 
     
 }
