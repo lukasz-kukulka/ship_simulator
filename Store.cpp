@@ -49,24 +49,33 @@ bool Store::checkCargoRange(uint16_t index){
 
 Store::Response Store::buy(Cargo* cargo, size_t amount, Player* player){
     tradeStatus_ = Response::done;
-    generateItemStatus(cargo, amount, player);
+    buyGenerateItemStatus(cargo, amount, player);
     std::cout << messageError_;
+    if (tradeStatus_ == Response::done){
+        cargo+= amount;
+        //add substract to player
+    }
     return tradeStatus_;
 }
 
 Store::Response Store::sell(Cargo* cargo, size_t amount, Player* player){
-    tradeStatus_ = Response::done;
-    generateItemStatus(cargo, amount, player);
-    return tradeStatus_;
+///////////////////////only for tests////////////////////////////////////
+    cargo->getPrice();
+    cargo->getAmount();
+    player->getAvailableSpace();
+/////////////////////////////////////////////////////////////////////////
+    cargo+= amount;
+    //add add to player
+    return Response::done;
 }
 
-void Store::generateItemStatus(Cargo* cargo, size_t amount, Player* player){
+void Store::buyGenerateItemStatus(Cargo* cargo, size_t amount, Player* player){
     tradeStatus_ = Response::done;
     checkMoney(player->getMoney(), cargo->getPrice(), amount);
     checkCargo(cargo->getAmount(), amount);
     checkSpace(amount, player->getAvailableSpace());
-    
 }
+
 
 bool Store::ifCargoExist(Cargo* cargo){
     auto result = std::find_if(begin(cargo_), end(cargo_), [&] (auto element) { return element.get() == cargo; });

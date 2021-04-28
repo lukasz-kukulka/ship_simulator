@@ -32,9 +32,9 @@ void Game::startGame(){
 
 }
 
-void Game::buy(){
-    std::string choiceCargoNumber { 0 };
-    uint16_t choiceCargoQuantity { 0 };
+void Game::checkEnterDataTransaction(){
+    choiceCargoNumber = '0';
+    choiceCargoQuantity = 0;
     while(store_->checkCargoCondition(choiceCargoNumber) == false){
         std::cout << "Cargo number : \n" ;
         std::cin >> choiceCargoNumber;
@@ -43,9 +43,20 @@ void Game::buy(){
         std::cout << "Cargo quantity : \n";
         std::cin >> choiceCargoQuantity;
     }
-    store_->buy(store_->getCargo(static_cast<uint16_t>(std::stoi(choiceCargoNumber))), choiceCargoQuantity, player_.get());
+}
 
-    
+void Game::buy(){
+    checkEnterDataTransaction();
+    if (store_->buy(store_->getCargo(static_cast<uint16_t>(std::stoi(choiceCargoNumber))), choiceCargoQuantity, player_.get()) == Store::Response::done){
+        std::cout << "Transaction approved\n";
+    }
+}
+
+void Game::sell(){
+    checkEnterDataTransaction();
+    store_->sell(store_->getCargo(static_cast<uint16_t>(std::stoi(choiceCargoNumber))), choiceCargoQuantity, player_.get());
+    std::cout << "Transaction approved\n";
+
 }
 
 void Game::printIntenface(){

@@ -33,6 +33,8 @@ private:
     void printRowInMap(uint8_t, std::string);
     void printIndexNumbers();
     void buy();
+    void sell();
+    void checkEnterDataTransaction();
     bool winCondition() const;
     bool loseCondition() const;
     bool choiceAction();
@@ -47,4 +49,6 @@ private:
     Cargo* cargo_;
     MenuOption menuOption_;
     std::vector<std::pair<std::pair<uint8_t, uint8_t>, std::string>> positions_;
+    std::string choiceCargoNumber { 0 };
+    uint16_t choiceCargoQuantity { 0 };
 };

@@ -40,7 +40,7 @@ private:
     bool checkCargo(size_t, size_t);
     bool checkSpace(size_t, size_t);
     size_t randomGenerate(int, int);
-    void generateItemStatus(Cargo*, size_t, Player*);
+    void buyGenerateItemStatus(Cargo*, size_t, Player*);
     bool ifCargoExist(Cargo*);
     std::vector<std::shared_ptr<Cargo>>cargo_;
     Response tradeStatus_;
