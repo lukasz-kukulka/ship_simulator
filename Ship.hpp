@@ -31,7 +31,7 @@ public:
     std::size_t getMaxCrew() const { return maxCrew_; }
     std::size_t getCrew() const { return crew_; }
     std::size_t getCapacity() const { return capacity_; }
-    //Cargo getCargo() { return *cargo_; }
+    //Cargo* getCargo() { return *cargo_; }
     void setName(const std::string& name) { name_ = name; }
     void load(const std::shared_ptr<Cargo>);
     void unload(Cargo*);

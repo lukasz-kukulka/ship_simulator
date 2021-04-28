@@ -35,6 +35,7 @@ private:
     void buy();
     void sell();
     void checkEnterDataTransaction();
+    //void travel();
     bool winCondition() const;
     bool loseCondition() const;
     bool choiceAction();

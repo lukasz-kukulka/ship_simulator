@@ -21,16 +21,23 @@ Game::Game(int money,
 }
 
 void Game::startGame(){
+    // while(choiceAction == true){
+    //     printIntenface()
+    // }
     //buy();
     //printIntenface();
     //choiceAction();
-    //printMap();
+    printMap();
     //printMenu();
     //std::cout << testStore << "\n";
     //++(*time_);
     //std::cout << testStore << "\n";
 
 }
+
+// void Game::travel(){
+
+// }
 
 void Game::checkEnterDataTransaction(){
     choiceCargoNumber = '0';
@@ -153,7 +160,7 @@ bool Game::choiceAction(){
             buy();
         } break;
         case MenuOption::sell : {
-            //testStore.sell();
+            sell();
         } break;
         case MenuOption::show_map : {
             printMap();
@@ -163,6 +170,7 @@ bool Game::choiceAction(){
         } break;
         case MenuOption::exit : {
             //exit();
+            //rightChoose = false;
         } break;
         default : {
             rightChoose = false;

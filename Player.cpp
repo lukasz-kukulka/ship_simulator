@@ -24,11 +24,7 @@ void Player::payCrew(int payCrew){
     }
 }
 
-// Cargo* Player::getCargo(uint8_t index) const{
-//     return ;
-// }
+void Player::loadShip(std::shared_ptr<Cargo>cargo){
+    ship_->load(cargo);
 
-
-// void Player::addCargoToShip(std::shared_ptr<Cargo>cargo, int8_t value){
-
-// }
+}
