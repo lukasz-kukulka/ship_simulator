@@ -51,8 +51,8 @@ void Ship::load(const std::shared_ptr<Cargo> cargo) {
     
 }
 
-void Ship::unload(Cargo* cargo){
-    auto checkCargo = std::find_if(std::begin(cargo_), std::end(cargo_), [cargo](const auto& ele){return cargo == ele.get() ;});
+void Ship::unload(const std::shared_ptr<Cargo> cargo){
+    auto checkCargo = std::find_if(std::begin(cargo_), std::end(cargo_), [cargo](const auto& ele){return cargo == ele ;});
     cargo_.erase(checkCargo);
 
 }

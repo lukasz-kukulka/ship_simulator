@@ -26,5 +26,8 @@ void Player::payCrew(int payCrew){
 
 void Player::loadShip(std::shared_ptr<Cargo>cargo){
     ship_->load(cargo);
+}
 
+void Player::unloadShip(std::shared_ptr<Cargo>cargo){
+    ship_->unload(cargo);
 }

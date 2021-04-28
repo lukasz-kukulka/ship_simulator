@@ -34,7 +34,7 @@ public:
     //Cargo* getCargo() { return *cargo_; }
     void setName(const std::string& name) { name_ = name; }
     void load(const std::shared_ptr<Cargo>);
-    void unload(Cargo*);
+    void unload(const std::shared_ptr<Cargo>);
 
 private:
     std::vector<std::shared_ptr<Cargo>> cargo_;

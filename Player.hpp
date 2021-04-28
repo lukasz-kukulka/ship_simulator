@@ -15,6 +15,7 @@ size_t getMoney() const { return money_; }
 size_t getAvailableSpace() const { return availableSpace_; }
 size_t getSpeed() const { return ship_->getSpeed(); }
 void loadShip(std::shared_ptr<Cargo>);
+void unloadShip(std::shared_ptr<Cargo>);
 void addCargoToShip(std::shared_ptr<Cargo>, int8_t);
 //overide from Delegate
 void payCrew(int payCrew) override;
