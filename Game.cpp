@@ -55,6 +55,8 @@ void Game::checkEnterDataTransaction(){
 void Game::buy(){
     checkEnterDataTransaction();
     if (store_->buy(store_->getCargo(static_cast<uint16_t>(std::stoi(choiceCargoNumber))), choiceCargoQuantity, player_.get()) == Store::Response::done){
+        std::shared_ptr<Cargo>cargoTemp(store_->getCargo(static_cast<uint16_t>(std::stoi(choiceCargoNumber))));
+        player_->loadShip(cargoTemp);
         std::cout << "Transaction approved\n";
     }
 }
@@ -62,6 +64,8 @@ void Game::buy(){
 void Game::sell(){
     checkEnterDataTransaction();
     store_->sell(store_->getCargo(static_cast<uint16_t>(std::stoi(choiceCargoNumber))), choiceCargoQuantity, player_.get());
+    std::shared_ptr<Cargo>cargoTemp(store_->getCargo(static_cast<uint16_t>(std::stoi(choiceCargoNumber))));
+    player_->unloadShip(cargoTemp);
     std::cout << "Transaction approved\n";
 
 }
