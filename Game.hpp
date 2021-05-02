@@ -29,13 +29,15 @@ private:
     void printIntenface();
     void printMenu();
     void printMap();
+    bool checkTravelCoordination();
+    // void printMiniMap();
     void mapGenerate();
     void printRowInMap(uint8_t, std::string);
     void printIndexNumbers();
     void buy();
     void sell();
     void checkEnterDataTransaction();
-    //void travel();
+    void travel();
     bool winCondition() const;
     bool loseCondition() const;
     bool choiceAction();
@@ -52,4 +54,6 @@ private:
     std::vector<std::pair<std::pair<uint8_t, uint8_t>, std::string>> positions_;
     std::string choiceCargoNumber { 0 };
     uint16_t choiceCargoQuantity { 0 };
+    std::pair<uint8_t, uint8_t>travel_coordinate{0, 0};
+    bool correctCoordination { false };
 };

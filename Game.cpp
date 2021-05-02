@@ -35,9 +35,25 @@ void Game::startGame(){
 
 }
 
-// void Game::travel(){
+// void Game::printMiniMap(){
 
 // }
+
+void Game::travel(){
+    while (correctCoordination == false){
+        std::cout << "Put coorditnation to travel: Witdh: ";
+        std::cin >> travel_coordinate.first;
+        std::cout << ", Put coorditnation to travel: Height: ";
+        std::cin >> travel_coordinate.second;
+        std::cout << "\n";
+        correctCoordination = checkTravelCoordination();
+    }
+ 
+}
+
+bool Game::checkTravelCoordination(){
+    
+}
 
 void Game::checkEnterDataTransaction(){
     choiceCargoNumber = '0';
@@ -67,7 +83,6 @@ void Game::sell(){
     std::shared_ptr<Cargo>cargoTemp(store_->getCargo(static_cast<uint16_t>(std::stoi(choiceCargoNumber))));
     player_->unloadShip(cargoTemp);
     std::cout << "Transaction approved\n";
-
 }
 
 void Game::printIntenface(){

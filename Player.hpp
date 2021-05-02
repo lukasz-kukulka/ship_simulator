@@ -25,6 +25,5 @@ std::shared_ptr<Ship> ship_;
 int money_;
 size_t availableSpace_ { 100 };
 void checkAvailableSpace();
-//std::vector<std::shared_ptr<Cargo>>cargo_;
 };
 
