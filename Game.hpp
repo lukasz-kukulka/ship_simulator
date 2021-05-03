@@ -54,6 +54,6 @@ private:
     std::vector<std::pair<std::pair<uint8_t, uint8_t>, std::string>> positions_;
     std::string choiceCargoNumber { 0 };
     uint16_t choiceCargoQuantity { 0 };
-    std::pair<uint8_t, uint8_t>travel_coordinate{0, 0};
+    std::pair<int, int>travel_coordinate{0, 0};
     bool correctCoordination { false };
 };

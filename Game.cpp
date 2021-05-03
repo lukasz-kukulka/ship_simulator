@@ -52,6 +52,14 @@ void Game::travel(){
 }
 
 bool Game::checkTravelCoordination(){
+    if (travel_coordinate.first > map_size.first || travel_coordinate.second > map_size.second){
+        std::cout << "Wrong value. Maximum width = " << map_size.first << ". Maximum width = " << map_size.second << ".\n";
+        return false;
+    } 
+    if (travel_coordinate.first <=  0 || travel_coordinate.second <= 0){
+        std::cout << "Wrong value. Value must be more than 0\n";
+        return false;
+    }
     return true;
 }
 
