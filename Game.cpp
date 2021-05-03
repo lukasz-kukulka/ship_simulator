@@ -52,7 +52,7 @@ void Game::travel(){
 }
 
 bool Game::checkTravelCoordination(){
-    
+    return true;
 }
 
 void Game::checkEnterDataTransaction(){
