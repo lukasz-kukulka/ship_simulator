@@ -41,6 +41,7 @@ private:
     bool winCondition() const;
     bool loseCondition() const;
     bool choiceAction();
+    void countTravelDistance();
     int curentlyMoney_;
     int gameDays_;
     int gameGoal_;
@@ -54,6 +55,7 @@ private:
     std::vector<std::pair<std::pair<uint8_t, uint8_t>, std::string>> positions_;
     std::string choiceCargoNumber { 0 };
     uint16_t choiceCargoQuantity { 0 };
-    std::pair<int, int>travel_coordinate{0, 0};
+    std::pair<int, int>travelCoordinate_{0, 0};
     bool correctCoordination { false };
+    std::pair<int, int>travelDistance_{0, 0};
 };

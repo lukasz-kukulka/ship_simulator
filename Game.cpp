@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <cctype>
 #include <cstdlib>
+#include <cmath>
 
 constexpr std::pair<uint8_t, uint8_t> map_size (10, 10);
 
@@ -42,25 +43,30 @@ void Game::startGame(){
 void Game::travel(){
     while (correctCoordination == false){
         std::cout << "Put coorditnation to travel: Witdh: ";
-        std::cin >> travel_coordinate.first;
+        std::cin >> travelCoordinate_.first;
         std::cout << ", Put coorditnation to travel: Height: ";
-        std::cin >> travel_coordinate.second;
+        std::cin >> travelCoordinate_.second;
         std::cout << "\n";
         correctCoordination = checkTravelCoordination();
     }
- 
+    travelCoordinate_ = {0, 0};
 }
 
 bool Game::checkTravelCoordination(){
-    if (travel_coordinate.first > map_size.first || travel_coordinate.second > map_size.second){
+    if (travelCoordinate_.first > map_size.first || travelCoordinate_.second > map_size.second){
         std::cout << "Wrong value. Maximum width = " << map_size.first << ". Maximum width = " << map_size.second << ".\n";
         return false;
     } 
-    if (travel_coordinate.first <=  0 || travel_coordinate.second <= 0){
+    if (travelCoordinate_.first <=  0 || travelCoordinate_.second <= 0){
         std::cout << "Wrong value. Value must be more than 0\n";
         return false;
     }
     return true;
+}
+
+void Game::countTravelDistance(){
+    travelDistance_.first = std::abs(player_->getPlayerPosition().first - travelCoordinate_.first);
+    travelDistance_.second = std::abs(player_->getPlayerPosition().second - travelCoordinate_.second);
 }
 
 void Game::checkEnterDataTransaction(){
