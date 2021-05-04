@@ -42,6 +42,7 @@ private:
     bool loseCondition() const;
     bool choiceAction();
     void countTravelDistance();
+    void shipAnimation();
     int curentlyMoney_;
     int gameDays_;
     int gameGoal_;
@@ -53,9 +54,10 @@ private:
     Cargo* cargo_;
     MenuOption menuOption_;
     std::vector<std::pair<std::pair<uint8_t, uint8_t>, std::string>> positions_;
-    std::string choiceCargoNumber { 0 };
-    uint16_t choiceCargoQuantity { 0 };
+    std::string choiceCargoNumber_ { 0 };
+    uint16_t choiceCargoQuantity_ { 0 };
     std::pair<int, int>travelCoordinate_{0, 0};
-    bool correctCoordination { false };
-    std::pair<int, int>travelDistance_{0, 0};
+    bool correctCoordination_ { false };
+    std::pair<int, int>travelDistance_{4, 4}; //should me 0, 0 this value only for test
+    bool progresShipAnimation_ { false };
 };

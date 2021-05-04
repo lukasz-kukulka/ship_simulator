@@ -5,6 +5,8 @@
 #include <cctype>
 #include <cstdlib>
 #include <cmath>
+#include <chrono>
+#include <thread>
 
 constexpr std::pair<uint8_t, uint8_t> map_size (10, 10);
 
@@ -28,7 +30,8 @@ void Game::startGame(){
     //buy();
     //printIntenface();
     //choiceAction();
-    printMap();
+    //printMap();
+    shipAnimation();
     //printMenu();
     //std::cout << testStore << "\n";
     //++(*time_);
@@ -41,14 +44,17 @@ void Game::startGame(){
 // }
 
 void Game::travel(){
-    while (correctCoordination == false){
+    while (correctCoordination_ == false){
         std::cout << "Put coorditnation to travel: Witdh: ";
         std::cin >> travelCoordinate_.first;
         std::cout << ", Put coorditnation to travel: Height: ";
         std::cin >> travelCoordinate_.second;
         std::cout << "\n";
-        correctCoordination = checkTravelCoordination();
+        correctCoordination_ = checkTravelCoordination();
     }
+    countTravelDistance();
+    player_->setPlayerPosition(travelDistance_);
+
     travelCoordinate_ = {0, 0};
 }
 
@@ -69,23 +75,42 @@ void Game::countTravelDistance(){
     travelDistance_.second = std::abs(player_->getPlayerPosition().second - travelCoordinate_.second);
 }
 
-void Game::checkEnterDataTransaction(){
-    choiceCargoNumber = '0';
-    choiceCargoQuantity = 0;
-    while(store_->checkCargoCondition(choiceCargoNumber) == false){
-        std::cout << "Cargo number : \n" ;
-        std::cin >> choiceCargoNumber;
-    }
-    while(store_->checkCargoRange(choiceCargoQuantity) == false){
-        std::cout << "Cargo quantity : \n";
-        std::cin >> choiceCargoQuantity;
+void Game::shipAnimation(){
+    std::string loading_ = " ";
+    for (int i = 0; i < (10 * (travelDistance_.first + travelDistance_.second)); i++){
+        std::this_thread::sleep_for(std::chrono::milliseconds(200));
+        std::system("clear");
+        loading_ = loading_ + "  ";
+        std::cout << loading_ << "          4        \n";
+        std::cout << loading_ << "         /|        \n";
+        std::cout << loading_ << "        / |        \n";
+        std::cout << loading_ << "       /  |        \n";
+        std::cout << loading_ << "      /   |        \n";
+        std::cout << loading_ << "     /____|        \n";
+        std::cout << loading_ << " _________|________\n";
+        std::cout << loading_ << "|_________________/\n";
     }
 }
 
+void Game::checkEnterDataTransaction(){
+    choiceCargoNumber_ = '0';
+    choiceCargoQuantity_ = 0;
+    while(store_->checkCargoCondition(choiceCargoNumber_) == false){
+        std::cout << "Cargo number : \n" ;
+        std::cin >> choiceCargoNumber_;
+    }
+    while(store_->checkCargoRange(choiceCargoQuantity_) == false){
+        std::cout << "Cargo quantity : \n";
+        std::cin >> choiceCargoQuantity_;
+    }
+}
+
+
+
 void Game::buy(){
     checkEnterDataTransaction();
-    if (store_->buy(store_->getCargo(static_cast<uint16_t>(std::stoi(choiceCargoNumber))), choiceCargoQuantity, player_.get()) == Store::Response::done){
-        std::shared_ptr<Cargo>cargoTemp(store_->getCargo(static_cast<uint16_t>(std::stoi(choiceCargoNumber))));
+    if (store_->buy(store_->getCargo(static_cast<uint16_t>(std::stoi(choiceCargoNumber_))), choiceCargoQuantity_, player_.get()) == Store::Response::done){
+        std::shared_ptr<Cargo>cargoTemp(store_->getCargo(static_cast<uint16_t>(std::stoi(choiceCargoNumber_))));
         player_->loadShip(cargoTemp);
         std::cout << "Transaction approved\n";
     }
@@ -93,8 +118,8 @@ void Game::buy(){
 
 void Game::sell(){
     checkEnterDataTransaction();
-    store_->sell(store_->getCargo(static_cast<uint16_t>(std::stoi(choiceCargoNumber))), choiceCargoQuantity, player_.get());
-    std::shared_ptr<Cargo>cargoTemp(store_->getCargo(static_cast<uint16_t>(std::stoi(choiceCargoNumber))));
+    store_->sell(store_->getCargo(static_cast<uint16_t>(std::stoi(choiceCargoNumber_))), choiceCargoQuantity_, player_.get());
+    std::shared_ptr<Cargo>cargoTemp(store_->getCargo(static_cast<uint16_t>(std::stoi(choiceCargoNumber_))));
     player_->unloadShip(cargoTemp);
     std::cout << "Transaction approved\n";
 }
