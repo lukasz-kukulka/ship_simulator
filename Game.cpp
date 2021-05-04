@@ -76,19 +76,23 @@ void Game::countTravelDistance(){
 }
 
 void Game::shipAnimation(){
-    std::string loading_ = " ";
-    for (int i = 0; i < (10 * (travelDistance_.first + travelDistance_.second)); i++){
-        std::this_thread::sleep_for(std::chrono::milliseconds(200));
+    std::string loadingStart = " ";
+    std::string loadingEnd;
+    int loopSize = ((10 * (travelDistance_.first + travelDistance_.second)) + 10);
+    loadingEnd.assign(loopSize, ' ');
+    for (int i = 0; i < loopSize; i++){
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
         std::system("clear");
-        loading_ = loading_ + "  ";
-        std::cout << loading_ << "          4        \n";
-        std::cout << loading_ << "         /|        \n";
-        std::cout << loading_ << "        / |        \n";
-        std::cout << loading_ << "       /  |        \n";
-        std::cout << loading_ << "      /   |        \n";
-        std::cout << loading_ << "     /____|        \n";
-        std::cout << loading_ << " _________|________\n";
-        std::cout << loading_ << "|_________________/\n";
+        loadingStart.push_back(' ');
+        loadingEnd.erase(loadingEnd.size() - 1);
+        std::cout << loadingStart << "          4        " << loadingEnd << "######################" << "\n";
+        std::cout << loadingStart << "         /|        " << loadingEnd << "#                    #" << "\n";
+        std::cout << loadingStart << "        / |        " << loadingEnd << "#                    #" << "\n";
+        std::cout << loadingStart << "       /  |        " << loadingEnd << "#       ISLAND       #" << "\n";
+        std::cout << loadingStart << "      /   |        " << loadingEnd << "#                    #" << "\n";
+        std::cout << loadingStart << "     /____|        " << loadingEnd << "#                    #" << "\n";
+        std::cout << loadingStart << " _________|________" << loadingEnd << "#                    #" << "\n";
+        std::cout << loadingStart << "|_________________/" << loadingEnd << "######################" << "\n";
     }
 }
 
