@@ -44,6 +44,7 @@ private:
     void moveToCoordinate();
     void countTravelDistance();
     void shipAnimation();
+    bool exitGame();
     int curentlyMoney_;
     int gameDays_;
     int gameGoal_;

@@ -225,6 +225,22 @@ bool Game::loseCondition() const{
     return ((curentlyMoney_ < gameGoal_ && time_->getElapseTime() >= static_cast<int>(gameDays_)) || (curentlyMoney_ <= 0));
 }
 
+bool Game::exitGame(){
+    std::string answer;
+    while(true){
+        std::cout << "Are you sure you wanna quit the game? Y/N ";
+        std::cin >> answer;
+        if (answer == "Y" || answer == "y"){
+            return true;
+        } else if (answer == "N" || answer == "n"){
+            return false;
+        } else {
+            std::system("clear");
+            std::cout << "Wrong answer, please insert Y or N. \n";
+        }
+    }
+}
+
 bool Game::choiceAction(){
     bool rightChoose = true;
     std::cout << "YOUR CHOOSE: ";
@@ -248,11 +264,14 @@ bool Game::choiceAction(){
             travel();
         } break;
         case MenuOption::exit : {
-            //exit();
-            //rightChoose = false;
+            if (exitGame() == true){
+                rightChoose = false;
+            } else {
+                rightChoose = true;
+            }
         } break;
         default : {
-            rightChoose = false;
+            rightChoose = false; // add checker to answer abot menu option
         } break;
     }
     return rightChoose;
