@@ -52,10 +52,29 @@ void Game::travel(){
         std::cout << "\n";
         correctCoordination_ = checkTravelCoordination();
     }
-    countTravelDistance();
-    player_->setPlayerPosition(travelDistance_);
+    
+    
 
     travelCoordinate_ = {0, 0};
+}
+
+bool Game::moveToCoordinate(){
+    countTravelDistance();
+    std::string askYesNo {};
+    while (true){
+        std::cout << "Your travel will go on " << travelDistance_.first + travelDistance_.second << " days.\n";
+        std::cout << "Are you sure do you wanna continue? Y/N : ";
+        std::cin >> askYesNo;
+        if (askYesNo == "Y" || askYesNo == "y"){
+            player_->setPlayerPosition(travelDistance_);
+            return true;
+        } else if (askYesNo == "N" || askYesNo == "n"){
+            return false;
+        } else {
+            std::system("clear");
+            std::cout << "Wrong answer, please insert Y or N. \n";
+        }
+    }
 }
 
 bool Game::checkTravelCoordination(){

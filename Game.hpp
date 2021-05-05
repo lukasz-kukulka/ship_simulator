@@ -41,6 +41,7 @@ private:
     bool winCondition() const;
     bool loseCondition() const;
     bool choiceAction();
+    void moveToCoordinate();
     void countTravelDistance();
     void shipAnimation();
     int curentlyMoney_;
