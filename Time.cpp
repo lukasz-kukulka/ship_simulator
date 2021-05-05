@@ -17,14 +17,12 @@ Time& Time::operator++() {
     for (auto observer : obserwer_){
         observer->nextDay();
     }
-        
-
-    elapseTime_++;
+    ++elapseTime_;
     return *this;
 }
 
 void Time::howManyObserwers(){
-    std::cout <<"OBSERWERS     " << obserwer_.size() <<  "  <--- SIZE\n"; 
+    //std::cout <<"OBSERWERS     " << obserwer_.size() <<  "  <--- SIZE\n"; 
 }
 
 void Time::callingNextDay(){

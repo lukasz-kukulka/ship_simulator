@@ -31,7 +31,7 @@ void Game::startGame(){
     //printIntenface();
     //choiceAction();
     //printMap();
-    shipAnimation();
+    //shipAnimation();
     //printMenu();
     //std::cout << testStore << "\n";
     //++(*time_);
@@ -52,13 +52,11 @@ void Game::travel(){
         std::cout << "\n";
         correctCoordination_ = checkTravelCoordination();
     }
-    
-    
-
+    moveToCoordinate();
     travelCoordinate_ = {0, 0};
 }
 
-bool Game::moveToCoordinate(){
+void Game::moveToCoordinate(){
     countTravelDistance();
     std::string askYesNo {};
     while (true){
@@ -67,9 +65,11 @@ bool Game::moveToCoordinate(){
         std::cin >> askYesNo;
         if (askYesNo == "Y" || askYesNo == "y"){
             player_->setPlayerPosition(travelDistance_);
-            return true;
+            ++*time_.get();
+            shipAnimation();
+            break;
         } else if (askYesNo == "N" || askYesNo == "n"){
-            return false;
+            break;
         } else {
             std::system("clear");
             std::cout << "Wrong answer, please insert Y or N. \n";
@@ -127,8 +127,6 @@ void Game::checkEnterDataTransaction(){
         std::cin >> choiceCargoQuantity_;
     }
 }
-
-
 
 void Game::buy(){
     checkEnterDataTransaction();
@@ -247,7 +245,7 @@ bool Game::choiceAction(){
             printMap();
         } break;
         case MenuOption::travel : {
-            //travel();
+            travel();
         } break;
         case MenuOption::exit : {
             //exit();
