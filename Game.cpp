@@ -24,6 +24,10 @@ Game::Game(int money,
 }
 
 void Game::startGame(){
+    welcomeScreen();
+    while (choiceAction() == true){
+
+    }
     // while(choiceAction == true){
     //     printIntenface()
     // }
@@ -42,6 +46,18 @@ void Game::startGame(){
 // void Game::printMiniMap(){
 
 // }
+void Game::welcomeScreen(){
+    std::system("clear");
+    std::cout << "############################################################\n";
+    std::cout << "#                                                          #\n";
+    std::cout << "#         WELCOME TO TRADE SHIP SIMULATOR 1.0.0.0          #\n";
+    std::cout << "#                                                          #\n";
+    std::cout << "############################################################\n";
+    std::cout << std::endl << "Press ENTER to continue...\n";
+    std::cin.ignore();
+    std::cin.clear();
+}
+
 
 void Game::travel(){
     while (correctCoordination_ == false){
@@ -243,6 +259,8 @@ bool Game::exitGame(){
 
 bool Game::choiceAction(){
     bool rightChoose = true;
+    std::system("clear");
+    printMenu();
     std::cout << "YOUR CHOOSE: ";
     std::cin >> optionMenu_;
     menuOption_ = static_cast<Game::MenuOption>(optionMenu_);
@@ -271,7 +289,7 @@ bool Game::choiceAction(){
             }
         } break;
         default : {
-            rightChoose = false; // add checker to answer abot menu option
+            rightChoose = false; // add checker to answer about menu option
         } break;
     }
     return rightChoose;

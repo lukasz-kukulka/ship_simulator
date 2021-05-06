@@ -26,6 +26,8 @@ public:
         exit
     };
 private:
+    void welcomeScreen();
+    void gameRules();
     void printIntenface();
     void printMenu();
     void printMap();
@@ -62,4 +64,5 @@ private:
     bool correctCoordination_ { false };
     std::pair<int, int>travelDistance_{1, 1}; //should me 0, 0 this value only for test
     bool progresShipAnimation_ { false };
+    std::string answer {};
 };
