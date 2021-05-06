@@ -27,7 +27,6 @@ public:
     };
 private:
     void welcomeScreen();
-    void gameRules();
     void printIntenface();
     void printMenu();
     void printMap();
@@ -47,6 +46,7 @@ private:
     void countTravelDistance();
     void shipAnimation();
     bool exitGame();
+    bool ifPlayerInIsland();
     int curentlyMoney_;
     int gameDays_;
     int gameGoal_;

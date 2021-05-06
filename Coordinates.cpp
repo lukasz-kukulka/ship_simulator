@@ -20,3 +20,8 @@ int Coordinates::distance(const Coordinates& lhs, const Coordinates& rhs){
 				   abs(static_cast<int>(lhs.positionY_) - static_cast<int>(rhs.positionY_));
 	return distance;
 }
+
+void Coordinates::setCoordinates(int posX, int posY){
+	positionX_ = posX;
+	positionY_ = posY;
+} 

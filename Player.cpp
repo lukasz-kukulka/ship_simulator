@@ -32,7 +32,6 @@ void Player::unloadShip(std::shared_ptr<Cargo>cargo){
     ship_->unload(cargo);
 }
 
-void Player::setPlayerPosition(std::pair<int, int> position){
-    playerPosition_.first += position.first;
-    playerPosition_.second += position.second;
+void Player::setPlayerPosition(int posX, int posY){
+    position_.setCoordinates(posX, posY);
 }

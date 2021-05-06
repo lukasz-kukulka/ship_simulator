@@ -44,8 +44,8 @@ void Game::startGame(){
 }
 
 // void Game::printMiniMap(){
-
 // }
+
 void Game::welcomeScreen(){
     std::system("clear");
     std::cout << "############################################################\n";
@@ -53,11 +53,10 @@ void Game::welcomeScreen(){
     std::cout << "#         WELCOME TO TRADE SHIP SIMULATOR 1.0.0.0          #\n";
     std::cout << "#                                                          #\n";
     std::cout << "############################################################\n";
-    std::cout << std::endl << "Press ENTER to continue...\n";
-    std::cin.ignore();
+    std::cout << std::endl << "Press ENTER to continue.";
     std::cin.clear();
+    std::cin.ignore();
 }
-
 
 void Game::travel(){
     while (correctCoordination_ == false){
@@ -72,19 +71,22 @@ void Game::travel(){
     travelCoordinate_ = {0, 0};
 }
 
+// bool Game::ifPlayerInIsland(){
+//     //if (player_->getPlayerPosition().first == )
+// }
+
 void Game::moveToCoordinate(){
     countTravelDistance();
-    std::string askYesNo {};
     while (true){
         std::cout << "Your travel will go on " << travelDistance_.first + travelDistance_.second << " days.\n";
         std::cout << "Are you sure do you wanna continue? Y/N : ";
-        std::cin >> askYesNo;
-        if (askYesNo == "Y" || askYesNo == "y"){
-            player_->setPlayerPosition(travelDistance_);
+        std::cin >> answer;
+        if (answer == "Y" || answer == "y"){
+            player_->setPlayerPosition(travelDistance_.first, travelDistance_.second);
             ++*time_.get();
             shipAnimation();
             break;
-        } else if (askYesNo == "N" || askYesNo == "n"){
+        } else if (answer == "N" || answer == "n"){
             break;
         } else {
             std::system("clear");
@@ -106,8 +108,8 @@ bool Game::checkTravelCoordination(){
 }
 
 void Game::countTravelDistance(){
-    travelDistance_.first = std::abs(player_->getPlayerPosition().first - travelCoordinate_.first);
-    travelDistance_.second = std::abs(player_->getPlayerPosition().second - travelCoordinate_.second);
+    travelDistance_.first = std::abs(static_cast<int>(player_->getPlayerPosition().getPositionX() - travelCoordinate_.first)); 
+    travelDistance_.second = std::abs(static_cast<int>(player_->getPlayerPosition().getPositionY() - travelCoordinate_.second));
 }
 
 void Game::shipAnimation(){
@@ -242,7 +244,6 @@ bool Game::loseCondition() const{
 }
 
 bool Game::exitGame(){
-    std::string answer;
     while(true){
         std::cout << "Are you sure you wanna quit the game? Y/N ";
         std::cin >> answer;
