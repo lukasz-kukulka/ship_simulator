@@ -71,9 +71,13 @@ void Game::travel(){
     travelCoordinate_ = {0, 0};
 }
 
-// bool Game::ifPlayerInIsland(){
-//     //if (player_->getPlayerPosition().first == )
-// }
+bool Game::ifPlayerInIsland(){
+    if (map_->getIsland(player_->getPlayerPosition()) == nullptr){
+        return false;
+    } else {
+        return true;
+    }
+}
 
 void Game::moveToCoordinate(){
     countTravelDistance();
