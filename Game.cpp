@@ -73,6 +73,7 @@ void Game::travel(){
 
 bool Game::ifPlayerInIsland(){
     if (map_->getIsland(player_->getPlayerPosition()) == nullptr){
+        errorMessage = "You are not in any Island\n";
         return false;
     } else {
         return true;
@@ -275,16 +276,17 @@ bool Game::choiceAction(){
         case MenuOption::check_cargo : {
             if (ifPlayerInIsland() == true){
                 std::cout << store_ << "\n";
-            } else {
-                errorMessage = "You are not in any Island\n";
             }
-            
         } break;
         case MenuOption::buy : {
-            buy();
+            if (ifPlayerInIsland() == true){
+                buy();
+            }
         } break;
         case MenuOption::sell : {
-            sell();
+            if (ifPlayerInIsland() == true){
+                sell();
+            }
         } break;
         case MenuOption::show_map : {
             printMap();
