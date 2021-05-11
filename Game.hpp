@@ -65,4 +65,5 @@ private:
     std::pair<int, int>travelDistance_{1, 1}; //should me 0, 0 this value only for test
     bool progresShipAnimation_ { false };
     std::string answer {};
+    std::string errorMessage {};
 };

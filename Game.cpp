@@ -266,13 +266,19 @@ bool Game::choiceAction(){
     bool rightChoose = true;
     std::system("clear");
     printMenu();
-    std::cout << "YOUR CHOOSE: ";
+    std::cout << errorMessage << "YOUR CHOOSE: ";
     std::cin >> optionMenu_;
+    errorMessage = "";
     menuOption_ = static_cast<Game::MenuOption>(optionMenu_);
     switch (menuOption_)
     {
         case MenuOption::check_cargo : {
-            std::cout << store_ << "\n";
+            if (ifPlayerInIsland() == true){
+                std::cout << store_ << "\n";
+            } else {
+                errorMessage = "You are not in any Island\n";
+            }
+            
         } break;
         case MenuOption::buy : {
             buy();
