@@ -26,23 +26,14 @@ Game::Game(int money,
 void Game::startGame(){
     welcomeScreen();
     while (choiceAction() == true){
-
     }
-    // while(choiceAction == true){
-    //     printIntenface()
-    // }
-    //buy();
-    //printIntenface();
-    //choiceAction();
-    //printMap();
-    //shipAnimation();
-    //printMenu();
-    //std::cout << testStore << "\n";
-    //++(*time_);
-    //std::cout << testStore << "\n";
 
 }
 
+void Game::cleanScreen(){
+    std::system("clear");
+    printIntenface();
+}
 // void Game::printMiniMap(){
 // }
 
@@ -51,6 +42,7 @@ void Game::waitingForPressEnter(){
     std::cin.get();
     std::cin.clear();
     std::cin.ignore();
+    cleanScreen();
 }
 
 void Game::welcomeScreen(){
@@ -129,7 +121,7 @@ void Game::shipAnimation(){
     loadingEnd.assign(loopSize, ' ');
     for (int i = 0; i < loopSize; i++){
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
-        std::system("clear");
+        cleanScreen();
         loadingStart.push_back(' ');
         loadingEnd.erase(loadingEnd.size() - 1);
         std::cout << loadingStart << "          4        " << loadingEnd << "######################" << "\n";
@@ -141,7 +133,7 @@ void Game::shipAnimation(){
         std::cout << loadingStart << " _________|________" << loadingEnd << "#                    #" << "\n";
         std::cout << loadingStart << "|_________________/" << loadingEnd << "######################" << "\n";
     }
-    std::system("clear");
+    //cleanScreen();
 }
 
 void Game::checkEnterDataTransaction(){
@@ -214,7 +206,7 @@ void Game::printMap(){
         }
     }
     waitingForPressEnter();
-    std::system("clear");
+    cleanScreen();
 }
 
 void Game::printRowInMap(uint8_t repeatTime, std::string whatRepeat){
@@ -261,6 +253,7 @@ bool Game::exitGame(){
         std::cout << "Are you sure you wanna quit the game? Y/N ";
         std::cin >> answer;
         if (answer == "Y" || answer == "y"){
+            std::system("clear");
             return true;
         } else if (answer == "N" || answer == "n"){
             return false;
@@ -279,7 +272,7 @@ bool Game::choiceAction(){
     std::cin >> optionMenu_;
     errorMessage = "";
     menuOption_ = static_cast<Game::MenuOption>(optionMenu_);
-    std::system("clear");
+    cleanScreen();
     switch (menuOption_)
     {
         case MenuOption::check_cargo : {

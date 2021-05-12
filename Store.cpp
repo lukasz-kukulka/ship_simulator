@@ -53,7 +53,6 @@ Store::Response Store::buy(Cargo* cargo, size_t amount, Player* player){
     std::cout << messageError_;
     if (tradeStatus_ == Response::done){
         cargo+= amount;
-        //add substract to player
     }
     return tradeStatus_;
 }
@@ -126,7 +125,6 @@ size_t Store::randomGenerate(int min, int max){
 }
 
 void Store::nextDay(){
-    //std::cout <<"Check nextDay in Store\n"; 
     for (auto& cargo : cargo_) {
         cargo->changeAmount(static_cast<int8_t>(randomGenerate(0, 50)), static_cast<int8_t>(randomGenerate(0, 50)));
         cargo->nextDay();

@@ -59,6 +59,5 @@ void Ship::unload(const std::shared_ptr<Cargo> cargo){
 }
 
 void Ship::nextDay(){
-    //std::cout <<"Check nextDay in Ship\n"; 
     delegate_->payCrew(crew_);
 }

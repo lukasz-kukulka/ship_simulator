@@ -48,6 +48,7 @@ private:
     bool exitGame();
     bool ifPlayerInIsland();
     void waitingForPressEnter();
+    void cleanScreen();
     int curentlyMoney_;
     int gameDays_;
     int gameGoal_;

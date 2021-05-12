@@ -17,7 +17,6 @@ void Player::checkAvailableSpace(){
 }
 
 void Player::payCrew(int payCrew){
-    std::cout <<"Pay crew i Player\n"; 
     if (money_ <= payCrew) {
         money_ = 0;
     } else {
