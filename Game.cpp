@@ -46,6 +46,13 @@ void Game::startGame(){
 // void Game::printMiniMap(){
 // }
 
+void Game::waitingForPressEnter(){
+    std::cout << std::endl << "Press ENTER to continue.";
+    std::cin.get();
+    std::cin.clear();
+    std::cin.ignore();
+}
+
 void Game::welcomeScreen(){
     std::system("clear");
     std::cout << "############################################################\n";
@@ -53,9 +60,7 @@ void Game::welcomeScreen(){
     std::cout << "#         WELCOME TO TRADE SHIP SIMULATOR 1.0.0.0          #\n";
     std::cout << "#                                                          #\n";
     std::cout << "############################################################\n";
-    std::cout << std::endl << "Press ENTER to continue.";
-    std::cin.clear();
-    std::cin.ignore();
+    waitingForPressEnter();
 }
 
 void Game::travel(){
@@ -207,6 +212,8 @@ void Game::printMap(){
             printRowInMap(map_size.first, "|---|");
         }
     }
+    waitingForPressEnter();
+    std::system("clear");
 }
 
 void Game::printRowInMap(uint8_t repeatTime, std::string whatRepeat){
@@ -265,12 +272,13 @@ bool Game::exitGame(){
 
 bool Game::choiceAction(){
     bool rightChoose = true;
-    std::system("clear");
+    
     printMenu();
     std::cout << errorMessage << "YOUR CHOOSE: ";
     std::cin >> optionMenu_;
     errorMessage = "";
     menuOption_ = static_cast<Game::MenuOption>(optionMenu_);
+    std::system("clear");
     switch (menuOption_)
     {
         case MenuOption::check_cargo : {

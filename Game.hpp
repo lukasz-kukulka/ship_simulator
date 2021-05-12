@@ -47,6 +47,7 @@ private:
     void shipAnimation();
     bool exitGame();
     bool ifPlayerInIsland();
+    void waitingForPressEnter();
     int curentlyMoney_;
     int gameDays_;
     int gameGoal_;
