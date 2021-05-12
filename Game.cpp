@@ -93,7 +93,7 @@ void Game::moveToCoordinate(){
         std::cin >> answer;
         if (answer == "Y" || answer == "y"){
             player_->setPlayerPosition(travelDistance_.first, travelDistance_.second);
-            ++*time_.get();
+            ++*time_;
             shipAnimation();
             break;
         } else if (answer == "N" || answer == "n"){
@@ -141,6 +141,7 @@ void Game::shipAnimation(){
         std::cout << loadingStart << " _________|________" << loadingEnd << "#                    #" << "\n";
         std::cout << loadingStart << "|_________________/" << loadingEnd << "######################" << "\n";
     }
+    std::system("clear");
 }
 
 void Game::checkEnterDataTransaction(){

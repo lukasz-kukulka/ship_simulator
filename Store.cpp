@@ -11,7 +11,7 @@
 #include <stdlib.h>
 
 Store::Store(Time* time) : time_(time) {
-    this->time_->addObserwer(this);
+    time_->addObserwer(this);
     generateAllCargo();
 }
 
@@ -126,7 +126,7 @@ size_t Store::randomGenerate(int min, int max){
 }
 
 void Store::nextDay(){
-    
+    //std::cout <<"Check nextDay in Store\n"; 
     for (auto& cargo : cargo_) {
         cargo->changeAmount(static_cast<int8_t>(randomGenerate(0, 50)), static_cast<int8_t>(randomGenerate(0, 50)));
         cargo->nextDay();

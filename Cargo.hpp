@@ -20,6 +20,8 @@ public:
     virtual std::string getUniqueStat() const = 0; 
     virtual void changeAmount(int8_t, int8_t) = 0;
     virtual void addSubstractAmout(int8_t) = 0;
+
+    //override from Obserwer
     void nextDay() override { ; }
 
 protected:

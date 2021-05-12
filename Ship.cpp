@@ -6,12 +6,13 @@ Ship::Ship(const std::string& name,
            std::size_t speed, 
            int maxCrew, 
            std::size_t capacity,  
-           Time* time) : name_(name), speed_(speed), maxCrew_(maxCrew), capacity_(capacity), time_(time) {
+           Time* time,
+           Delegate* delegate) : name_(name), speed_(speed), maxCrew_(maxCrew), capacity_(capacity), time_(time), delegate_(delegate){
                time_->addObserwer(this);
            }
 Ship::Ship(std::size_t speed, 
            int maxCrew,  
-           Time* time) : Ship("Empty", speed, maxCrew, 0, time) {}
+           Time* time, Delegate* delegate) : Ship("Empty", speed, maxCrew, 0, time, delegate) {}
 
 Ship::~Ship(){
     time_->deleteObserwer(this);
@@ -58,5 +59,6 @@ void Ship::unload(const std::shared_ptr<Cargo> cargo){
 }
 
 void Ship::nextDay(){
+    //std::cout <<"Check nextDay in Ship\n"; 
     delegate_->payCrew(crew_);
 }

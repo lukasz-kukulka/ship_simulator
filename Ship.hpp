@@ -15,8 +15,8 @@ public:
         virtual void payCrew(int payCrew) = 0;
         virtual ~Delegate() {} ; 
     };
-    Ship(const std::string&, std::size_t, int, std::size_t, Time*);
-    Ship(std::size_t, int, Time*);
+    Ship(const std::string&, std::size_t, int, std::size_t, Time*, Delegate*);
+    Ship(std::size_t, int, Time*, Delegate*);
     ~Ship() override;
 
     Ship& operator+=(const int);
@@ -44,6 +44,6 @@ private:
     int maxCrew_ { 100 };
     int crew_ { 100 };
     std::size_t capacity_ { 1000 };
-    Delegate* delegate_;
     Time* time_;
+    Delegate* delegate_;
 };

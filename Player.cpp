@@ -8,7 +8,7 @@
 #include <cctype>
 
 Player::Player(Time* time) : 
-                ship_(std::make_shared<Ship>("Test_NAME", 30, 100, 50, time)){
+                ship_(std::make_shared<Ship>("Test_NAME", 30, 100, 50, time, this)){
 
 }
 
@@ -17,6 +17,7 @@ void Player::checkAvailableSpace(){
 }
 
 void Player::payCrew(int payCrew){
+    std::cout <<"Pay crew i Player\n"; 
     if (money_ <= payCrew) {
         money_ = 0;
     } else {
