@@ -59,13 +59,14 @@ void Game::travel(){
     while (correctCoordination_ == false){
         std::cout << "Put coorditnation to travel: Witdh: ";
         std::cin >> travelCoordinate_.first;
-        std::cout << ", Put coorditnation to travel: Height: ";
+        std::cout << "Put coorditnation to travel: Height: ";
         std::cin >> travelCoordinate_.second;
         std::cout << "\n";
         correctCoordination_ = checkTravelCoordination();
     }
     moveToCoordinate();
     travelCoordinate_ = {0, 0};
+    correctCoordination_ = false;
 }
 
 bool Game::ifPlayerInIsland(){
@@ -102,8 +103,12 @@ bool Game::checkTravelCoordination(){
         std::cout << "Wrong value. Maximum width = " << map_size.first << ". Maximum width = " << map_size.second << ".\n";
         return false;
     } 
-    if (travelCoordinate_.first <=  0 || travelCoordinate_.second <= 0){
-        std::cout << "Wrong value. Value must be more than 0\n";
+    if (travelCoordinate_.first ==  0 && travelCoordinate_.second == 0){
+        std::cout << "You will stay in the same position";
+        return false;
+    }
+    if (travelCoordinate_.first < 0 || travelCoordinate_.second < 0){
+        std::cout << "Wrong value, value can't be less then 0";
         return false;
     }
     return true;

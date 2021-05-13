@@ -13,11 +13,8 @@ void Time::deleteObserwer(Obserwer* obserwer){
 }
 
 Time& Time::operator++() {
-    std::cout <<"Observer size = "<< obserwer_.size() <<  "\n"; 
-    for (const auto& observer : obserwer_){
-        std::cout <<"Check\n"; 
+    for (const auto& observer : obserwer_){ 
         observer->nextDay();
-        std::cout <<"Check na koniec\n"; 
     }
     
     ++elapseTime_;
