@@ -49,6 +49,7 @@ private:
     bool ifPlayerInIsland();
     void waitingForPressEnter();
     void cleanScreen();
+    void messageAfterShipAnimation();
     int curentlyMoney_;
     int gameDays_;
     int gameGoal_;

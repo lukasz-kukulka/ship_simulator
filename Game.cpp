@@ -38,10 +38,10 @@ void Game::cleanScreen(){
 // }
 
 void Game::waitingForPressEnter(){
-    std::cout << std::endl << "Press ENTER to continue.";
-    std::cin.get();
+    std::cout << "Press ENTER to continue.";
     std::cin.clear();
     std::cin.ignore();
+    std::cin.get();
     cleanScreen();
 }
 
@@ -138,7 +138,13 @@ void Game::shipAnimation(){
         std::cout << loadingStart << " _________|________" << loadingEnd << "#                    #" << "\n";
         std::cout << loadingStart << "|_________________/" << loadingEnd << "######################" << "\n";
     }
-    //cleanScreen();
+    messageAfterShipAnimation();
+    cleanScreen();
+}
+
+void Game::messageAfterShipAnimation(){
+    std::cout << "You arrived, you spend " << travelDistance_.first + travelDistance_.second << " days in your jorney\n";
+    waitingForPressEnter();
 }
 
 void Game::checkEnterDataTransaction(){
