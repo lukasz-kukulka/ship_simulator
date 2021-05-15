@@ -11,10 +11,11 @@ public:
     int getElapseTime() const { return elapseTime_; }
     void howManyObserwers();
     Time& operator++();
+    Time& operator+=(const int);
  
 
 private:
-    int elapseTime_ { 1 };
+    int elapseTime_ { 0 };
     std::vector<Obserwer*>obserwer_;
     void callingNextDay();
 

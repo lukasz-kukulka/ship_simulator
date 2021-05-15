@@ -21,6 +21,16 @@ Time& Time::operator++() {
     return *this;
 }
 
+Time& Time::operator+=(const int time){
+    for (int i = 0; i < time; i++){
+        for (const auto& observer : obserwer_){ 
+            observer->nextDay();
+        }
+        ++elapseTime_;
+    }
+    return *this;
+}
+
 void Time::howManyObserwers(){
     //std::cout <<"OBSERWERS     " << obserwer_.size() <<  "  <--- SIZE\n"; 
 }

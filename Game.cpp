@@ -86,7 +86,8 @@ void Game::moveToCoordinate(){
         std::cin >> answer;
         if (answer == "Y" || answer == "y"){
             player_->setPlayerPosition(travelDistance_.first, travelDistance_.second);
-            ++*time_;
+            //++*time_;
+            *time_ += static_cast<int>(travelDistance_.first + travelDistance_.second);
             shipAnimation();
             break;
         } else if (answer == "N" || answer == "n"){
@@ -182,7 +183,7 @@ void Game::printIntenface(){
     std::cout << "#" << std::setfill(' ') << std::setw (97) << "#" << "\n";
     std::cout << "#" << std::setfill(' ') << std::setw (15) << "YOUR MONEY: " << std::setw (8) << std::setfill('0') << curentlyMoney_;
     std::cout << std::setfill(' ') << std::setw (30) << "YOUR GOAL: " << std::setw (8) << std::setfill('0') << gameGoal_;
-    std::cout << std::setfill(' ') << std::setw (30) << "DAYS LEFT: " << gameDays_ << std::setw (4) << "#" "\n";
+    std::cout << std::setfill(' ') << std::setw (30) << "DAYS LEFT: " << std::setw (3) << std::setfill('0') << gameDays_ - time_->getElapseTime() << std::setfill(' ') << std::setw (4) << "#" "\n";
     std::cout << "#" << std::setfill(' ') << std::setw (97) << "#" << "\n";
     std::cout << std::setw (99) << std::setfill('#') << "\n";
 }
