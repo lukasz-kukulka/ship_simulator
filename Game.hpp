@@ -50,6 +50,7 @@ private:
     void waitingForPressEnter();
     void cleanScreen();
     void messageAfterShipAnimation();
+    void checkShip();
     int curentlyMoney_;
     int gameDays_;
     int gameGoal_;

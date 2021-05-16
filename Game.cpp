@@ -85,10 +85,30 @@ void Game::moveToCoordinate(){
         std::cout << "Are you sure do you wanna continue? Y/N : ";
         std::cin >> answer;
         if (answer == "Y" || answer == "y"){
+
+
+        // if(player_->getPlayerPosition().getPositionX() == tempPosX && player_->getPlayerPosition().getPositionY() == tempPosY){
+        //     positions_.push_back(std::make_pair(std::make_pair(tempPosX, tempPosY), "|[@]|"));
+        // } else if(map_->getIsland(Coordinates(tempPosX, tempPosY)) == nullptr){
+        //     positions_.push_back(std::make_pair(std::make_pair(tempPosX, tempPosY), "|   |"));
+        // } else {
+        //     positions_.push_back(std::make_pair(std::make_pair(tempPosX, tempPosY), "| O |"));
+        // }
+
+
+            auto mapChangeIndex = player_->getPlayerPosition().getPositionX() + (player_->getPlayerPosition().getPositionY() * (10 * (player_->getPlayerPosition().getPositionY() - 1)));
+            if(map_->getIsland(Coordinates(player_->getPlayerPosition().getPositionX(), player_->getPlayerPosition().getPositionY())) == nullptr){
+                positions_[mapChangeIndex].second = "|   |";
+                //{ positions_[mapChangeIndex].first.first, positions_[mapChangeIndex].first.second, "|   |" };
+            } else {
+                positions_[mapChangeIndex].second = "| O |" ;
+            }
             player_->setPlayerPosition(travelDistance_.first, travelDistance_.second);
             //++*time_;
             *time_ += static_cast<int>(travelDistance_.first + travelDistance_.second);
             shipAnimation();
+            mapChangeIndex = player_->getPlayerPosition().getPositionX() + (player_->getPlayerPosition().getPositionY() * (10 * (player_->getPlayerPosition().getPositionY() - 1)));
+            positions_[mapChangeIndex].second = "|[@]|";
             break;
         } else if (answer == "N" || answer == "n"){
             break;
@@ -240,7 +260,9 @@ void Game::mapGenerate(){
     uint8_t tempPosX = 0, tempPosY = 0;
     std::cout << "\n";
     while (tempPosX < map_size.first && tempPosY < map_size.second){
-        if(map_->getIsland(Coordinates(tempPosX, tempPosY)) == nullptr){
+        if(player_->getPlayerPosition().getPositionX() == tempPosX && player_->getPlayerPosition().getPositionY() == tempPosY){
+            positions_.push_back(std::make_pair(std::make_pair(tempPosX, tempPosY), "|[@]|"));
+        } else if(map_->getIsland(Coordinates(tempPosX, tempPosY)) == nullptr){
             positions_.push_back(std::make_pair(std::make_pair(tempPosX, tempPosY), "|   |"));
         } else {
             positions_.push_back(std::make_pair(std::make_pair(tempPosX, tempPosY), "| O |"));
@@ -320,4 +342,8 @@ bool Game::choiceAction(){
         } break;
     }
     return rightChoose;
+}
+
+void Game::checkShip(){
+    
 }
