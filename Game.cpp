@@ -64,6 +64,7 @@ void Game::travel(){
         std::cout << "\n";
         correctCoordination_ = checkTravelCoordination();
     }
+    countTravelDistance();
     moveToCoordinate();
     travelCoordinate_ = {0, 0};
     correctCoordination_ = false;
@@ -79,35 +80,22 @@ bool Game::ifPlayerInIsland(){
 }
 
 void Game::moveToCoordinate(){
-    countTravelDistance();
     while (true){
         std::cout << "Your travel will go on " << travelDistance_.first + travelDistance_.second << " days.\n";
         std::cout << "Are you sure do you wanna continue? Y/N : ";
         std::cin >> answer;
         if (answer == "Y" || answer == "y"){
-
-
-        // if(player_->getPlayerPosition().getPositionX() == tempPosX && player_->getPlayerPosition().getPositionY() == tempPosY){
-        //     positions_.push_back(std::make_pair(std::make_pair(tempPosX, tempPosY), "|[@]|"));
-        // } else if(map_->getIsland(Coordinates(tempPosX, tempPosY)) == nullptr){
-        //     positions_.push_back(std::make_pair(std::make_pair(tempPosX, tempPosY), "|   |"));
-        // } else {
-        //     positions_.push_back(std::make_pair(std::make_pair(tempPosX, tempPosY), "| O |"));
-        // }
-
-
-            auto mapChangeIndex = player_->getPlayerPosition().getPositionX() + (player_->getPlayerPosition().getPositionY() * (10 * (player_->getPlayerPosition().getPositionY() - 1)));
+            auto mapChangeIndex = (player_->getPlayerPosition().getPositionX() - 1) + (10 * (player_->getPlayerPosition().getPositionY() - 1));
+            std::cout << " ----------------------------- " << mapChangeIndex << "\n";
             if(map_->getIsland(Coordinates(player_->getPlayerPosition().getPositionX(), player_->getPlayerPosition().getPositionY())) == nullptr){
                 positions_[mapChangeIndex].second = "|   |";
-                //{ positions_[mapChangeIndex].first.first, positions_[mapChangeIndex].first.second, "|   |" };
             } else {
                 positions_[mapChangeIndex].second = "| O |" ;
             }
-            player_->setPlayerPosition(travelDistance_.first, travelDistance_.second);
-            //++*time_;
+            player_->setPlayerPosition(travelCoordinate_.first, travelCoordinate_.second);
             *time_ += static_cast<int>(travelDistance_.first + travelDistance_.second);
             shipAnimation();
-            mapChangeIndex = player_->getPlayerPosition().getPositionX() + (player_->getPlayerPosition().getPositionY() * (10 * (player_->getPlayerPosition().getPositionY() - 1)));
+            mapChangeIndex = (player_->getPlayerPosition().getPositionX() - 1) +  (10 * (player_->getPlayerPosition().getPositionY() - 1));
             positions_[mapChangeIndex].second = "|[@]|";
             break;
         } else if (answer == "N" || answer == "n"){
@@ -124,7 +112,7 @@ bool Game::checkTravelCoordination(){
         std::cout << "Wrong value. Maximum width = " << map_size.first << ". Maximum width = " << map_size.second << ".\n";
         return false;
     } 
-    if (travelCoordinate_.first ==  0 && travelCoordinate_.second == 0){
+    if (travelCoordinate_.first ==  static_cast<int>(player_->getPlayerPosition().getPositionX()) && travelCoordinate_.second == static_cast<int>(player_->getPlayerPosition().getPositionY())){
         std::cout << "You will stay in the same position";
         return false;
     }
@@ -260,7 +248,7 @@ void Game::mapGenerate(){
     uint8_t tempPosX = 0, tempPosY = 0;
     std::cout << "\n";
     while (tempPosX < map_size.first && tempPosY < map_size.second){
-        if(player_->getPlayerPosition().getPositionX() == tempPosX && player_->getPlayerPosition().getPositionY() == tempPosY){
+        if(player_->getPlayerPosition().getPositionX() - 1 == tempPosX && player_->getPlayerPosition().getPositionY() - 1 == tempPosY){
             positions_.push_back(std::make_pair(std::make_pair(tempPosX, tempPosY), "|[@]|"));
         } else if(map_->getIsland(Coordinates(tempPosX, tempPosY)) == nullptr){
             positions_.push_back(std::make_pair(std::make_pair(tempPosX, tempPosY), "|   |"));

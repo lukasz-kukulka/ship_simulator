@@ -29,7 +29,7 @@ std::shared_ptr<Ship> ship_;
 int money_;
 size_t availableSpace_ { 100 };
 void checkAvailableSpace();
-Coordinates position_ {0, 0};
+Coordinates position_ {1, 1};
 //std::pair<int, int>playerPosition_ { 0, 0 };
 
 };
