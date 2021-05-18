@@ -71,7 +71,7 @@ void Game::travel(){
 }
 
 bool Game::ifPlayerInIsland(){
-    if (map_->getIsland(player_->getPlayerPosition()) == nullptr){
+    if (map_->getIsland(Coordinates(player_->getPlayerPosition().getPositionX() - 1, player_->getPlayerPosition().getPositionY() - 1 )) == nullptr){
         errorMessage = "You are not in any Island\n";
         return false;
     } else {
@@ -80,14 +80,13 @@ bool Game::ifPlayerInIsland(){
 }
 
 void Game::moveToCoordinate(){
+    auto mapChangeIndex = (player_->getPlayerPosition().getPositionX() - 1) + (10 * (player_->getPlayerPosition().getPositionY() - 1));
     while (true){
         std::cout << "Your travel will go on " << travelDistance_.first + travelDistance_.second << " days.\n";
         std::cout << "Are you sure do you wanna continue? Y/N : ";
         std::cin >> answer;
         if (answer == "Y" || answer == "y"){
-            auto mapChangeIndex = (player_->getPlayerPosition().getPositionX() - 1) + (10 * (player_->getPlayerPosition().getPositionY() - 1));
-            std::cout << " ----------------------------- " << mapChangeIndex << "\n";
-            if(map_->getIsland(Coordinates(player_->getPlayerPosition().getPositionX(), player_->getPlayerPosition().getPositionY())) == nullptr){
+            if(map_->getIsland(Coordinates(player_->getPlayerPosition().getPositionX() - 1, player_->getPlayerPosition().getPositionY() - 1 )) == nullptr){
                 positions_[mapChangeIndex].second = "|   |";
             } else {
                 positions_[mapChangeIndex].second = "| O |" ;
@@ -131,7 +130,7 @@ void Game::countTravelDistance(){
 void Game::shipAnimation(){
     std::string loadingStart = " ";
     std::string loadingEnd;
-    int loopSize = ((10 * (travelDistance_.first + travelDistance_.second)) + 10);
+    int loopSize = ((3 * (travelDistance_.first + travelDistance_.second)) + 10);
     loadingEnd.assign(loopSize, ' ');
     for (int i = 0; i < loopSize; i++){
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
