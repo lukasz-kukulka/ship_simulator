@@ -125,10 +125,13 @@ size_t Store::randomGenerate(int min, int max){
 }
 
 void Store::nextDay(){
+    for (int i = 0; i < cargoSize; i++){
+        cargo_[i]->nextDay();
+    }
     for (auto& cargo : cargo_) {
         cargo->changeAmount(static_cast<int8_t>(randomGenerate(0, 50)), static_cast<int8_t>(randomGenerate(0, 50)));
-        cargo->nextDay();
     }
+
 }
 
 std::ostream& operator<<(std::ostream& oper, const Store& store){
@@ -157,6 +160,7 @@ std::ostream& operator<<(std::ostream& oper, const Store& store){
 void Store::generateAllCargo(){
     generateAlcohol();
     generateItems();
+    cargoSize = static_cast<int>(cargo_.size());
     generateFruits();
     generateDryFruits();
 }

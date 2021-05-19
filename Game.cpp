@@ -298,7 +298,7 @@ bool Game::choiceAction(){
     {
         case MenuOption::check_cargo : {
             if (ifPlayerInIsland() == true){
-                std::cout << store_ << "\n";
+                std::cout << *store_ << "\n";
             }
         } break;
         case MenuOption::buy : {

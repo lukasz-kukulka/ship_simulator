@@ -46,5 +46,6 @@ private:
     Response tradeStatus_;
     std::string messageError_ { "" };
     uint16_t numberCargoToCheck { 0 };
+    int cargoSize;
     Time* time_;
 };
