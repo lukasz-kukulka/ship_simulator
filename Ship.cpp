@@ -1,6 +1,9 @@
 #include "Ship.hpp"
 #include <algorithm>
 #include <iostream>
+#include <iostream>
+#include <iomanip>
+#include <stdlib.h>
 
 Ship::Ship(const std::string& name, 
            std::size_t speed, 
@@ -60,4 +63,28 @@ void Ship::unload(const std::shared_ptr<Cargo> cargo){
 
 void Ship::nextDay(){
     delegate_->payCrew(crew_);
+}
+
+std::ostream& operator<<(std::ostream& oper, const Ship& ship){
+    oper << "|" << std::setfill('-') << std::setw (97) << "|\n";
+    oper << "|" << std::setfill('-') << std::setw (97) << "|\n";
+    oper << "|" << std::setfill(' ') << std::setw (6) << "|" << std::setw (20) << "|" << std::setw (20) << "|" << std::setw (20) << "|" << std::setw (31) << "|\n";
+    oper << "|" << std::setw (4) << "ID" << std::setw (2) << "|";
+    oper << std::setw (14) << "CARGO NAME" << std::setw (6) << "|";
+    oper << std::setw (12) << "AMOUNT" << std::setw (8) << "|";
+    oper << std::setw (12) << "PRICE" << std::setw (8) << "|";
+    oper << std::setw (23) << "UNIQUE STATISTIC" << std::setw (7) << "|";
+    oper << "\n|" << std::setw (6) << "|" << std::setw (20) << "|" << std::setw (20) << "|" << std::setw (20) << "|" << std::setw (31) << "|\n";
+    oper << "|" << std::setfill('-') << std::setw (97) << "|\n";
+    int it = 1;
+    for (const auto& cargo : ship.cargo_) {
+        oper << std::setfill(' ') << "|" << std::setw (static_cast<int>((std::to_string(it)).size() / 2 + 3)) << it << std::setw (static_cast<int>(3 - ((std::to_string(it)).size() / 2))) << "|";
+        oper << std::setw (static_cast<int>(cargo->getName().size() / 2 + 10)) << cargo->getName() << std::setw (static_cast<int>(10 - (cargo->getName().size() / 2))) << "|";
+        oper << std::setw (static_cast<int>(std::to_string(cargo->getAmount()).size() / 2 + 10)) << cargo->getAmount() << std::setw (static_cast<int>(10 - (std::to_string(cargo->getAmount()).size() / 2))) << "|";
+        oper << std::setw (static_cast<int>(std::to_string(cargo->getBestPrice()).size() / 2 + 10)) << cargo->getBestPrice() << std::setw (static_cast<int>(10 - (std::to_string(cargo->getBestPrice()).size() / 2))) << "|";
+        oper << std::setw (static_cast<int>(cargo->getUniqueStat().size() / 2 + 15)) << cargo->getUniqueStat() << std::setw (static_cast<int>(16 - (cargo->getUniqueStat().size() / 2))) << "|\n";
+        oper << "|" << std::setfill('-') << std::setw (97) << "|\n";
+        it++;
+    }
+    return oper;
 }

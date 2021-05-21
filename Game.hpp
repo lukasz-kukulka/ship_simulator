@@ -21,6 +21,7 @@ public:
         check_cargo = 1,
         buy,
         sell,
+        ship,
         show_map,
         travel,
         exit
@@ -62,7 +63,7 @@ private:
     Cargo* cargo_;
     MenuOption menuOption_;
     std::vector<std::pair<std::pair<uint8_t, uint8_t>, std::string>> positions_;
-    std::string choiceCargoNumber_ { 0 };
+    int choiceCargoNumber_ { 0 };
     uint16_t choiceCargoQuantity_ { 0 };
     std::pair<int, int>travelCoordinate_{0, 0};
     bool correctCoordination_ { false };

@@ -156,22 +156,23 @@ void Game::messageAfterShipAnimation(){
 }
 
 void Game::checkEnterDataTransaction(){
-    choiceCargoNumber_ = '0';
+    choiceCargoNumber_ = 0;
     choiceCargoQuantity_ = 0;
-    while(store_->checkCargoCondition(choiceCargoNumber_) == false){
+    do {
         std::cout << "Cargo number : \n" ;
         std::cin >> choiceCargoNumber_;
-    }
-    while(store_->checkCargoRange(choiceCargoQuantity_) == false){
+    } while(store_->checkCargoCondition(choiceCargoNumber_) == false);
+
+    do {
         std::cout << "Cargo quantity : \n";
         std::cin >> choiceCargoQuantity_;
-    }
+    } while(store_->checkCargoRange(choiceCargoQuantity_) == false);
 }
 
 void Game::buy(){
     checkEnterDataTransaction();
-    if (store_->buy(store_->getCargo(static_cast<uint16_t>(std::stoi(choiceCargoNumber_))), choiceCargoQuantity_, player_.get()) == Store::Response::done){
-        std::shared_ptr<Cargo>cargoTemp(store_->getCargo(static_cast<uint16_t>(std::stoi(choiceCargoNumber_))));
+    if (store_->buy(store_->getCargo(static_cast<uint16_t>(choiceCargoNumber_)), choiceCargoQuantity_, player_.get()) == Store::Response::done){
+        std::shared_ptr<Cargo>cargoTemp(store_->getCargo(static_cast<uint16_t>(choiceCargoNumber_)));
         player_->loadShip(cargoTemp);
         std::cout << "Transaction approved\n";
     }
@@ -179,8 +180,8 @@ void Game::buy(){
 
 void Game::sell(){
     checkEnterDataTransaction();
-    store_->sell(store_->getCargo(static_cast<uint16_t>(std::stoi(choiceCargoNumber_))), choiceCargoQuantity_, player_.get());
-    std::shared_ptr<Cargo>cargoTemp(store_->getCargo(static_cast<uint16_t>(std::stoi(choiceCargoNumber_))));
+    store_->sell(store_->getCargo(static_cast<uint16_t>(choiceCargoNumber_)), choiceCargoQuantity_, player_.get());
+    std::shared_ptr<Cargo>cargoTemp(store_->getCargo(static_cast<uint16_t>(choiceCargoNumber_)));
     player_->unloadShip(cargoTemp);
     std::cout << "Transaction approved\n";
 }
@@ -203,9 +204,10 @@ void Game::printMenu(){
     std::cout << "#" << std::setfill(' ')  << std::setw (22) << " 1. CHECK CARGO " << std::setw (8) << "#\n";
     std::cout << "#" << std::setfill(' ')  << std::setw (18) << " 2. BUY " << std::setw (12) << "#\n";
     std::cout << "#" << std::setfill(' ')  << std::setw (18) << " 3. SELL " << std::setw (12) << "#\n";
-    std::cout << "#" << std::setfill(' ')  << std::setw (20) << " 4. SHOW MAP " << std::setw (10) << "#\n";
-    std::cout << "#" << std::setfill(' ')  << std::setw (19) << " 5. TRAVEL " << std::setw (11) << "#\n";
-    std::cout << "#" << std::setfill(' ')  << std::setw (17) << " 6. EXIT" << std::setw (13) << "#\n";
+    std::cout << "#" << std::setfill(' ')  << std::setw (21) << " 4. SHIP CARGO " << std::setw (9) << "#\n";
+    std::cout << "#" << std::setfill(' ')  << std::setw (20) << " 5. SHOW MAP " << std::setw (10) << "#\n";
+    std::cout << "#" << std::setfill(' ')  << std::setw (19) << " 6. TRAVEL " << std::setw (11) << "#\n";
+    std::cout << "#" << std::setfill(' ')  << std::setw (17) << " 7. EXIT" << std::setw (13) << "#\n";
     std::cout << "#" << std::setfill(' ')  << std::setw (30) << "#\n";
     std::cout << "#" << std::setfill('-')  << std::setw (31) << "#\n\n";
 }
@@ -310,6 +312,9 @@ bool Game::choiceAction(){
             if (ifPlayerInIsland() == true){
                 sell();
             }
+        } break;
+        case MenuOption::ship : {
+            player_->printShipCargo();
         } break;
         case MenuOption::show_map : {
             printMap();

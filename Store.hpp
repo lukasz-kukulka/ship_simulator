@@ -24,7 +24,7 @@ public:
     Response buy(Cargo*, size_t, Player*);
     Response sell(Cargo*, size_t, Player*);
     friend std::ostream& operator<<(std::ostream&, const Store&);
-    bool checkCargoCondition(std::string);
+    bool checkCargoCondition(int);
     bool checkCargoRange(uint16_t);
     Cargo* getCargo(uint16_t);
 

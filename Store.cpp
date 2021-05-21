@@ -23,13 +23,9 @@ Cargo* Store::getCargo(uint16_t pos){
     return cargo_[pos].get();
 }
 
-bool Store::checkCargoCondition(std::string index){
-    auto results = std::find_if(begin(index), end(index), [&](auto element){ 
-        numberCargoToCheck++;
-        return !std::isdigit(static_cast<unsigned char>(element)); 
-    });
-    if (results == index.end() || static_cast<uint16_t>(std::stoi(index)) > getNoOffCargo() || std::stoi(index) < 1) {
-        system( "cls" );
+bool Store::checkCargoCondition(int index){
+    if (index > getNoOffCargo() || index < 1) {
+        system( "clear" );
         std::cout << "Wrong value, please insert correct value. Betwen 1 and " << getNoOffCargo() << " \n";
         return false;
     } else {
@@ -41,7 +37,7 @@ bool Store::checkCargoRange(uint16_t index){
     if (index <= getNoOffCargo()){
         return true;
     } else {
-        system( "cls" );
+        system( "clear" );
         std::cout << "Wrong value, please insert correct value. Betwen 1 and " << cargo_[numberCargoToCheck]->getAmount() << " \n";
         return false;
     }

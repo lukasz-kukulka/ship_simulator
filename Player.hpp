@@ -23,6 +23,7 @@ void unloadShip(std::shared_ptr<Cargo>);
 void addCargoToShip(std::shared_ptr<Cargo>, int8_t);
 //overide from Delegate
 void payCrew(int payCrew) override;
+void printShipCargo() { std::cout << *ship_.get() << "\n"; }
 
 private:
 std::shared_ptr<Ship> ship_;
